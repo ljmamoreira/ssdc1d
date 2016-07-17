@@ -21,7 +21,7 @@ def init(xc, xf):
     #Density, velocity, convection strength parameter F:
     rho = 1.0
     v = 2.5
-    F = rho * v
+    F = np.ones_like(xf) * rho * v
 
     #Conduction coefficient and diffusion strength parameter D:
     gamma = 0.1 
@@ -30,8 +30,12 @@ def init(xc, xf):
     D[0] = gamma / (xc[0] - xf[0])
     D[-1] = gamma / (xf[-1] - xc[-1])
 
+    #Source terms
+    M = np.zeros_like(xc)
+    N = np.zeros_like(xc)
+
     #Boundary values
     phib_W = 1.0
     phib_E = 0.0
 
-    return F, D, phib_W, phib_E
+    return F, D, M, N, phib_W, phib_E

@@ -3,6 +3,8 @@
 #José Amoreira
 #July 2016
 
+#uniform, centered, 1D mesh maker
+
 import numpy as np
 
 def mkmesh(n,a,b):
