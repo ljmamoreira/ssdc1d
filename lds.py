@@ -8,7 +8,11 @@
 
 import numpy as np
 
-def mkcoeffs(xf, xc, F, D, M, N, phib_W, phib_E):
+def mkcoeffs(mesh, F, D, srcCoefs, bdrVals):
+    xc, xf = mesh
+    phib_W, phiB_E =bdrVals
+    M, N = srcCoefs 
+
     aE = np.zeros_like(xc)
     aW = np.zeros_like(xc)
     aP = np.zeros_like(xc)

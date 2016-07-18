@@ -15,6 +15,6 @@ def mkmesh(n,a,b):
     assert isinstance(n,int), "mkmesh: n is not an integer."
     xf = np.linspace(a, b, n+1)
     xc = (xf[1:] + xf[:-1])/2.0
-    return xc, xf
+    return (xc, xf)
 
 
