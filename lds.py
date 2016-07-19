@@ -17,7 +17,7 @@ def mkcoeffs(mesh, F, D, srcCoeffs, bdrVals):
        bdrVals: (tuple) lower and upper boudary values.
     """
     xc, xf = mesh
-    phib_W, phiB_E = bdrVals
+    phib_W, phib_E = bdrVals
     M, N = srcCoeffs 
 
     aE = np.zeros_like(xc)
@@ -38,6 +38,6 @@ def mkcoeffs(mesh, F, D, srcCoeffs, bdrVals):
     b[-1] += (D[-1] - F[-1]) * phib_E
 
     aP = aE + aW + F[1:] - F[-1:] - S
-    algEqCoeffs = (aP, aE, aW, b)
+    stdFormCoeffs = (aP, aW, aE, b)
     
-    return algEqCoeffs
+    return stdFormCoeffs

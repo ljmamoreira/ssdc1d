@@ -47,24 +47,59 @@ def init(mesh):
 
     return F, D, srcCoeffs, bdrVals
 
+#Small auxiliary function: returns True if arrays are very close
+def isSmallDiff(a1,a2):
+    d = a1 - a2
+    return np.dot(d,d) < np.finfo(float).eps
+
+#Small auxiliary function 
+def okIfTrue(ok):
+    if ok:
+        return "OK."
+    return "Wrong."
+
+
 def test_mkmesh():
     mesh = meshmaker.mkmesh(5, 0.0, 1.0)
     xc, xf = mesh
-    dc = xc - np.array([0.1, 0.3, 0.5, 0.7, 0.9])
-    if np.dot(dc,dc)<1.e-20:
-        print "Mesh center coordinates OK."
-    else:
-        print "Mesh center coordinates wrong."
+    centerOK = isSmallDiff(xc, np.array([0.1, 0.3, 0.5, 0.7, 0.9]))
+    print "Mesh center coords",okIfTrue(centerOK)
+    if not centerOK:
         print "Expected: [0.1, 0.3, 0.5, 0.7, 0.9]"
         print "Computed: ",xc
-    df = xf - np.array([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
-    if np.dot(df,df)<1.e-20:
-        print "Mesh boundary coordinates OK."
-    else:
-        print "Mesh boundary coordinates wrong."
+    faceOK = isSmallDiff(xf, np.array([0.0, 0.2, 0.4, 0.6, 0.8, 1.0]))
+    print "Mesh boundary coordinates",okIfTrue(faceOK)
+    if not faceOK:
         print "Expected: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]"
         print "Computed: ",xf
-    
+
+
+def test_lds():
+    mesh = meshmaker.mkmesh(5, 0.0, 1.0)
+    F, D, srcCoeffs, bdrVals = init(mesh)
+    stdFormCoefss = lds.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
+    aP, aW, aE, b = stdFormCoeffs
+    aPOK = isSmallDiff(aP, np.array([ 2.75,  1.0,   1.00,  1.00,  0.25]))
+    aWOK = isSmallDiff(aW, np.array([ 0.00,  1.75,  1.75,  1.75,  1.75]))
+    aEOK = isSmallDiff(aE, np.array([-0.75, -0.75, -0.75, -0.75,  0.00]))
+    bOK  = isSmallDiff(b,  np.array([ 3.50,  0.00,  0.00,  0.00,  0.00]))
+    print "aP", okIfTrue(aPOK)
+    if not aPOK:
+        print "Expected: [ 2.75,  1.0,   1.00,  1.00,  0.25]"
+        print "Computed: ",aP
+    print "aW", okIfTrue(aWOK)
+    if not aWOK:
+        print "Expected: [ 0.00,  1.75,  1.75,  1.75,  1.75]"
+        print "Computed: ",aW
+    print "aE", okIfTrue(aEOK)
+    if not aEOK:
+        print "Expected: [-0.75, -0.75, -0.75, -0.75,  0.00]"
+        print "Computed: ",aE
+    print "b ", okIfTrue(bOK)
+    if not bOK:
+        print "Expected: [ 3.50,  0.00,  0.00,  0.00,  0.00]"
+        print "Computed: ",b
+
 
 def test_uw():
     pass
