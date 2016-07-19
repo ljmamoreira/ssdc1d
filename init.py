@@ -11,8 +11,8 @@ import numpy as np
 
 
 def init(mesh):
-    """init(). Defines the values for density, velocity, conduction coefficient,
-    convection and diffusion strength parameters F and D
+    """init(mesh). Defines the values for density, velocity, conduction
+       coefficient, convection and diffusion strength parameters F and D
        source terms and boundary values at each CV.
     """
     xc, xf = mesh
@@ -35,11 +35,11 @@ def init(mesh):
     #Source terms
     M = np.zeros_like(xc)
     N = np.zeros_like(xc)
-    srcCoefs = (M, N)
+    srcCoeffs = (M, N)
 
     #Boundary values
     phib_W = 1.0
     phib_E = 0.0
     bdrVals = (phib_W, phib_E)
 
-    return F, D, srcCoefs, bdrVals
+    return F, D, srcCoeffs, bdrVals
