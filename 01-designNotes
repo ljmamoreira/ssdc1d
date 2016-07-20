@@ -2,4 +2,4 @@ mesh        -> (xc, xf)
 bdrVals     -> phib_W, phiB_E
 srcCoefs    -> (M, N)
 
-algEqCoeffs -> (aP, aE, aW, b)
+stdFormCoeffs -> (aP, aW, aE, b)

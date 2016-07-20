@@ -11,6 +11,7 @@ import numpy as np
 import meshmaker
 import lds
 import uw
+import solve
 
 #Define here a local version of init(), in order to keep the parameters
 
@@ -46,7 +47,10 @@ def init(mesh):
     phib_E = 0.0
     bdrVals = (phib_W, phib_E)
 
-    return F, D, srcCoeffs, bdrVals
+    #mu: parameter in the analytic solution
+    mu = rho * v / gamma
+
+    return F, D, srcCoeffs, bdrVals, mu
 
 #Small auxiliary functions for reporting results conformance
 def isSmallDiff(a1,a2):
@@ -68,8 +72,8 @@ def printReport(name,expected,computed):
 
 #Tests start here
 
-def test_mkmesh():
-    mesh = meshmaker.mkmesh(5, 0.0, 1.0)
+def test_ucmesh():
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     xc, xf = mesh
     xcExpected = np.array([0.1, 0.3, 0.5, 0.7, 0.9])
     xfExpected = np.array([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
@@ -78,8 +82,8 @@ def test_mkmesh():
 
 
 def test_lds():
-    mesh = meshmaker.mkmesh(5, 0.0, 1.0)
-    F, D, srcCoeffs, bdrVals = init(mesh)
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    F, D, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = lds.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 2.75,  1.0,   1.00,  1.00,  0.25])
@@ -90,11 +94,16 @@ def test_lds():
     printReport("aW", aWExpected, aW)
     printReport("aE", aEExpected, aE)
     printReport("b",  bExpected, b)
+    ylds = solve.solve(stdFormCoeffs)
+    xc, xf = mesh
+    for i,(x,y) in enumerate(zip(xc,ylds)):
+        print i+1,x,y
+    
 
 
 def test_uw():
-    mesh = meshmaker.mkmesh(5, 0.0, 1.0)
-    F, D, srcCoeffs, bdrVals = init(mesh)
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    F, D, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = uw.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 4.00,  3.50,  3.50,  3.50,  4.00])
@@ -105,6 +114,10 @@ def test_uw():
     printReport("aW", aWExpected, aW)
     printReport("aE", aEExpected, aE)
     printReport("b",  bExpected, b)
+    yuw = solve.solve(stdFormCoeffs)
+    xc, xf = mesh
+    for i,(x,y) in enumerate(zip(xc,yuw)):
+        print i+1,x,y
 
 def test_hyb():
     pass

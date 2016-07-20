@@ -42,4 +42,7 @@ def init(mesh):
     phib_E = 0.0
     bdrVals = (phib_W, phib_E)
 
-    return F, D, srcCoeffs, bdrVals
+    #mu: parameter in the analytic solution
+    mu = rho * v / gamma
+
+    return F, D, srcCoeffs, bdrVals, mu
