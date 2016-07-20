@@ -10,6 +10,7 @@
 import numpy as np
 import meshmaker
 import lds
+import uw
 
 #Define here a local version of init(), in order to keep the parameters
 
@@ -65,6 +66,8 @@ def printReport(name,expected,computed):
         print "   Computed: ", computed
 
 
+#Tests start here
+
 def test_mkmesh():
     mesh = meshmaker.mkmesh(5, 0.0, 1.0)
     xc, xf = mesh
@@ -90,7 +93,18 @@ def test_lds():
 
 
 def test_uw():
-    pass
+    mesh = meshmaker.mkmesh(5, 0.0, 1.0)
+    F, D, srcCoeffs, bdrVals = init(mesh)
+    stdFormCoeffs = uw.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
+    aP, aW, aE, b = stdFormCoeffs
+    aPExpected = np.array([ 4.00,  3.50,  3.50,  3.50,  4.00])
+    aWExpected = np.array([ 0.00,  3.00,  3.00,  3.00,  3.00])
+    aEExpected = np.array([ 0.50,  0.50,  0.50,  0.50,  0.00])
+    bExpected =  np.array([ 3.50,  0.00,  0.00,  0.00,  0.00])
+    printReport("aP", aPExpected, aP)
+    printReport("aW", aWExpected, aW)
+    printReport("aE", aEExpected, aE)
+    printReport("b",  bExpected, b)
 
 def test_hyb():
     pass

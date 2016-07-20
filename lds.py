@@ -34,10 +34,10 @@ def mkcoeffs(mesh, F, D, srcCoeffs, bdrVals):
     S[-1] -= D[-1] - F[-1]
 
     b = N
-    b[0]  += (D[0] + F[0]) * phib_W
+    b[0]  += (D[0]  + F[0])  * phib_W
     b[-1] += (D[-1] - F[-1]) * phib_E
 
     aP = aE + aW + F[1:] - F[-1:] - S
-    stdFormCoeffs = (aP, aW, aE, b)
     
+    stdFormCoeffs = (aP, aW, aE, b)
     return stdFormCoeffs

@@ -18,7 +18,7 @@ def mkcoeffs(mesh, F, D, srcCoeffs, bdrVals):
     """
 
     xc, xf = mesh
-    phib_W, phiB_E =bdrVals
+    phib_W, phib_E =bdrVals
     M, N = srcCoeffs 
 
     aE = np.zeros_like(xc)
@@ -26,3 +26,19 @@ def mkcoeffs(mesh, F, D, srcCoeffs, bdrVals):
     aP = np.zeros_like(xc)
     b = np.zeros_like(xc)
     S = np.zeros_like(xc)
+
+    aW[1:] =  D[1:-1] + np.maximum(0.0,  F[1:-1])
+    aE[:-1] = D[1:-1] + np.maximum(0.0, -F[1:-1])
+
+    S = M
+    S[0]  -= D[0]  + np.maximum(0.0,  F[0])
+    S[-1] -= D[-1] + np.maximum(0.0, -F[-1])
+
+    b = N
+    b[0]  += (D[0]  + np.maximum(0.0, F[0] )) * phib_W
+    b[-1] += (D[-1] + np.maximum(0.0, F[-1])) * phib_E
+
+    aP = aW + aE + F[1:] - F[:-1] - S
+
+    stdFormCoeffs = (aP, aW, aE, b)
+    return stdFormCoeffs
