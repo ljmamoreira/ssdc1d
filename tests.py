@@ -12,6 +12,7 @@ import meshmaker
 import lds
 import uw
 import solve
+import analytic
 
 #Define here a local version of init(), in order to keep the parameters
 
@@ -94,10 +95,12 @@ def test_lds():
     printReport("aW", aWExpected, aW)
     printReport("aE", aEExpected, aE)
     printReport("b",  bExpected, b)
-    ylds = solve.solve(stdFormCoeffs)
+    ylds = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    yexpected = [1.0356, 0.8694, 1.2573, 0.3521, 2.4644]
     xc, xf = mesh
-    for i,(x,y) in enumerate(zip(xc,ylds)):
-        print i+1,x,y
+    yanalytic = analytic.solution(xc, 0.0, 1.0, bdrVals, mu)
+    for i,(x,y,ye,ya) in enumerate(zip(xc,ylds,yexpected,yanalytic)):
+        print ("{:2d} "+"{:4f} "*4).format(i+1, x, y,ye, ya)
     
 
 
@@ -114,10 +117,12 @@ def test_uw():
     printReport("aW", aWExpected, aW)
     printReport("aE", aEExpected, aE)
     printReport("b",  bExpected, b)
-    yuw = solve.solve(stdFormCoeffs)
+    yuw = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    yexpected = [0.9998, 0.9987, 0.9921, 0.9524, 0.7143]
     xc, xf = mesh
-    for i,(x,y) in enumerate(zip(xc,yuw)):
-        print i+1,x,y
+    yanalytic = analytic.solution(xc, 0.0, 1.0, bdrVals, mu)
+    for i,(x,y,ye,ya) in enumerate(zip(xc,yuw,yexpected,yanalytic)):
+        print ("{:2d} "+"{:4f} "*4).format(i+1, x, y,ye, ya)
 
 def test_hyb():
     pass

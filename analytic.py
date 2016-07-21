@@ -5,7 +5,9 @@
 
 #Calculation of analytic solution
 
-def analytic(x, x0, x1, bdrVals, mu):
+import numpy as np
+
+def solution(x, x0, x1, bdrVals, mu):
     y0,y1 = bdrVals
     ex = np.exp(mu*x)
     e0 = np.exp(mu*x0); e1 = np.exp(mu*x1)
