@@ -1,5 +1,5 @@
 #coding: utf8
-#File mesh.py
+#File meshmaker.py
 #José Amoreira
 #July 2016
 

@@ -1,5 +1,5 @@
 #coding: utf8
-#File tests.py
+#File analytic.py
 #José Amoreira
 #July 2016
 
