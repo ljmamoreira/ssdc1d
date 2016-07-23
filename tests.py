@@ -9,8 +9,9 @@
 
 import numpy as np
 import meshmaker
-import lds
-import uw
+import cddiscretize as discr
+#import lds
+#import uw
 import solve
 import analytic
 
@@ -85,7 +86,7 @@ def test_ucmesh():
 def test_lds():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     F, D, srcCoeffs, bdrVals, mu = init(mesh)
-    stdFormCoeffs = lds.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, (F, D), srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 2.75,  1.0,   1.00,  1.00,  0.25])
     aWExpected = np.array([ 0.00,  1.75,  1.75,  1.75,  1.75])
