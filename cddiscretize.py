@@ -17,7 +17,7 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
     aW =  D[1:-1] + F[1:-1] * (xc[1:]  - xf[1:-1]) / (xc[1:] - xc[:-1])
     aW = np.insert(aW, 0, 0.0)
     aE = D[1:-1] - F[1:-1] * (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
-    aE = np.append(aE,0.0)
+    aE = np.append(aE, 0.0)
     
     S = M
     S[0]  -= D[0]  + F[0]
@@ -32,9 +32,28 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def uw(mesh, F, D, srcCoeffs, bdrVals, coeffs):
-    pass
-    #return (aP, aW, aE, b)
+def uw(mesh, FD, srcCoeffs, bdrVals):
+    xc, xf = mesh
+    F, D = FD
+    M, N = srcCoeffs 
+    phib_W, phib_E =bdrVals
+
+    aW =  D[1:-1] + np.maximum(0.0,  F[1:-1])
+    aW = np.insert(aW, 0, 0.0)
+    aE = D[1:-1] + np.maximum(0.0, -F[1:-1])
+    aE = np.append(aE, 0.0)
+    
+    S = M
+    S[0]  -= D[0]  + np.maximum(0.0,  F[0])
+    S[-1] -= D[-1] + np.maximum(0.0, -F[-1])
+
+    b = N
+    b[0]  += (D[0]  + np.maximum(0.0, F[0] )) * phib_W
+    b[-1] += (D[-1] + np.maximum(0.0, F[-1])) * phib_E
+
+    aP = aW + aE + F[1:] - F[:-1] - S
+
+    return (aP, aW, aE, b)
 
 
 def hyb(mesh, F, D, srcCoeffs, bdrVals, coeffs):

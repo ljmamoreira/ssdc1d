@@ -52,7 +52,7 @@ def init(mesh):
     #mu: parameter in the analytic solution
     mu = rho * v / gamma
 
-    return F, D, srcCoeffs, bdrVals, mu
+    return (F, D), srcCoeffs, bdrVals, mu
 
 #Small auxiliary functions for reporting results conformance
 def isSmallDiff(a1,a2):
@@ -85,8 +85,8 @@ def test_ucmesh():
 
 def test_lds():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
-    F, D, srcCoeffs, bdrVals, mu = init(mesh)
-    stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, (F, D), srcCoeffs, bdrVals)
+    FD, srcCoeffs, bdrVals, mu = init(mesh)
+    stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 2.75,  1.0,   1.00,  1.00,  0.25])
     aWExpected = np.array([ 0.00,  1.75,  1.75,  1.75,  1.75])
@@ -107,8 +107,8 @@ def test_lds():
 
 def test_uw():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
-    F, D, srcCoeffs, bdrVals, mu = init(mesh)
-    stdFormCoeffs = uw.mkcoeffs(mesh, F, D, srcCoeffs, bdrVals)
+    FD, srcCoeffs, bdrVals, mu = init(mesh)
+    stdFormCoeffs = discr.stdEqCoeffs("uw", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 4.00,  3.50,  3.50,  3.50,  4.00])
     aWExpected = np.array([ 0.00,  3.00,  3.00,  3.00,  3.00])
