@@ -14,9 +14,11 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
     F, D = FD
     M, N = srcCoeffs
     phib_W, phib_E = bdrVals
-    aW =  D[1:-1] + F[1:-1] * (xc[1:]  - xf[1:-1]) / (xc[1:] - xc[:-1])
+    fwW = (xc[1:] - xf[1:-1]) / (xc[1:] - xc[:-1])
+    feE = (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    aW = D[1:-1] + F[1:-1] * fwW 
     aW = np.insert(aW, 0, 0.0)
-    aE = D[1:-1] - F[1:-1] * (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    aE = D[1:-1] - F[1:-1] * feE
     aE = np.append(aE, 0.0)
     
     S = M
@@ -32,7 +34,7 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def uw(mesh, FD, srcCoeffs, bdrVals):
+def uws(mesh, FD, srcCoeffs, bdrVals):
     xc, xf = mesh
     F, D = FD
     M, N = srcCoeffs 
@@ -56,17 +58,47 @@ def uw(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def hyb(mesh, F, D, srcCoeffs, bdrVals, coeffs):
+def hyb(mesh, FD, srcCoeffs, bdrVals):
+    xc, xf = mesh
+    ncvs = len(xc)
+    F, D = FD
+    M, N = srcCoeffs 
+    phib_W, phib_E = bdrVals
+
+    fwW = (xc[1:] - xf[1:-1]) / (xc[1:] - xc[:-1])
+    feE = (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    aW = np.amax(
+           np.column_stack((np.zeros(ncvs-1), D[1:-1] + F[1:-1]*fwW, F[1:-1])),
+         axis=1)
+    aW = np.insert(aW, 0, 0.0)
+    aE = np.amax(
+           np.column_stack((-F[1:-1], D[1:-1] - F[1:-1]*feE, np.zeros(ncvs-1))),
+            axis=1)
+    aE = np.append(aE, 0.0)
+    S = M
+    b = N
+    Xw = D[0]
+    if F[0] > -D[0]:
+        Xw += F[0]
+    S[0] -= Xw
+    b[0] += Xw * phib_W
+
+    Xe = D[-1]
+    if F[-1] < D[-1]:
+        Xe -= F[-1]
+    S[-1] -= Xe
+    b[-1] += Xe * phib_E
+
+    aP = aW + aE + F[1:] - F[:-1] - S
+    return (aP, aW, aE, b)
+
+
+def ais(mesh, FD, srcCoeffs, bdrVals):
     pass
     #return (aP, aW, aE, b)
 
 
-def ais(mesh, F, D, srcCoeffs, bdrVals, coeffs):
-    pass
-    #return (aP, aW, aE, b)
-
-
-schemeFunc = {"lds": lds, "uw": uw, "hyb": hyb, "ais": ais}
+schemeFunc = {"lds": lds, "uws": uws, "hyb": hyb, "ais": ais}
 
 
 def stdEqCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals):
@@ -83,3 +115,5 @@ def stdEqCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals):
     aP, aW, aE, b = schemeFunc[scheme](mesh, FD, srcCoeffs, bdrVals)
 
     return aP, aW, aE, b
+
+

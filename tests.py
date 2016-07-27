@@ -99,16 +99,19 @@ def test_lds():
     ylds = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [1.0356, 0.8694, 1.2573, 0.3521, 2.4644]
     xc, xf = mesh
-    yanalytic = analytic.solution(xc, 0.0, 1.0, bdrVals, mu)
+    f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    yanalytic = f_ana(xc)
+    print "  #      x        yc        ye        ya"
     for i,(x,y,ye,ya) in enumerate(zip(xc,ylds,yexpected,yanalytic)):
-        print ("{:2d} "+"{:4f} "*4).format(i+1, x, y,ye, ya)
+        print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "Error: ",f_ana.error(x,ylds)
     
 
 
-def test_uw():
+def test_uws():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
-    stdFormCoeffs = discr.stdEqCoeffs("uw", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.stdEqCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
     aPExpected = np.array([ 4.00,  3.50,  3.50,  3.50,  4.00])
     aWExpected = np.array([ 0.00,  3.00,  3.00,  3.00,  3.00])
@@ -118,16 +121,48 @@ def test_uw():
     printReport("aW", aWExpected, aW)
     printReport("aE", aEExpected, aE)
     printReport("b",  bExpected, b)
-    yuw = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    yuws = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [0.9998, 0.9987, 0.9921, 0.9524, 0.7143]
     xc, xf = mesh
-    yanalytic = analytic.solution(xc, 0.0, 1.0, bdrVals, mu)
-    for i,(x,y,ye,ya) in enumerate(zip(xc,yuw,yexpected,yanalytic)):
-        print ("{:2d} "+"{:4f} "*4).format(i+1, x, y,ye, ya)
+    f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    yanalytic = f_ana(xc)
+    print "  #      x        yc        ye        ya"
+    for i,(x,y,ye,ya) in enumerate(zip(xc,yuws,yexpected,yanalytic)):
+        print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "Error: ",f_ana.error(x,yuws)
 
 def test_hyb():
-    pass
-
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    FD, srcCoeffs, bdrVals, mu = init(mesh)
+    stdFormCoeffs = discr.stdEqCoeffs("hyb", mesh, FD, srcCoeffs, bdrVals)
+    aP, aW, aE, b = stdFormCoeffs
+    aPExpected = np.array([3.500, 2.500, 2.500, 2.500, 3.500])
+    aWExpected = np.array([0.000, 2.500, 2.500, 2.500, 2.500])
+    aEExpected = np.array(5*[0.000])
+    bExpected = np.array([3.500, 0.000, 0.000, 0.000, 0.000])
+    printReport("aP", aPExpected, aP)
+    printReport("aW", aWExpected, aW)
+    printReport("aE", aEExpected, aE)
+    printReport("b",  bExpected, b)
+    yhyb = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    yexpected = [1.000, 1.000, 1.000, 1.000,0.7143]
+    xc, xf = mesh
+    f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    yanalytic = f_ana(xc)
+    print "  #      x        yc        ye        ya"
+    for i,(x,y,ye,ya) in enumerate(zip(xc,yhyb,yexpected,yanalytic)):
+        print ("{:3d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "Error: ",f_ana.error(x,yhyb)
 def test_ais():
     pass
 
+if __name__ == "__main__":
+    print "LDS:"
+    test_lds()
+    print
+    print "UWS:"
+    test_uws()
+    print
+    print "HYB:"
+    test_hyb()
+    print
