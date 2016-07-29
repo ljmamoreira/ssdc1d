@@ -8,14 +8,20 @@
 
 import numpy as np
 
+#Linear interpolation coefficients, computed at the inner faces (N-1 elements)
+#At the W boundary fwW=1; at the E boundary feE=1.
+def lic(mesh):
+    xc, xf = mesh
+    fwW = (xc[1:] - xf[1:-1]) / (xc[1:] - xc[:-1])
+    feE = (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    return fwW, feE
+
 #Different shemes implemented
 def lds(mesh, FD, srcCoeffs, bdrVals):
-    xc, xf = mesh
     F, D = FD
     M, N = srcCoeffs
     phib_W, phib_E = bdrVals
-    fwW = (xc[1:] - xf[1:-1]) / (xc[1:] - xc[:-1])
-    feE = (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    fwW, feE = lic(mesh)
     aW = D[1:-1] + F[1:-1] * fwW 
     aW = np.insert(aW, 0, 0.0)
     aE = D[1:-1] - F[1:-1] * feE
@@ -35,7 +41,6 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
 
 
 def uws(mesh, FD, srcCoeffs, bdrVals):
-    xc, xf = mesh
     F, D = FD
     M, N = srcCoeffs 
     phib_W, phib_E =bdrVals
@@ -59,14 +64,13 @@ def uws(mesh, FD, srcCoeffs, bdrVals):
 
 
 def hyb(mesh, FD, srcCoeffs, bdrVals):
-    xc, xf = mesh
-    ncvs = len(xc)
+    #xc, xf = mesh
     F, D = FD
+    ncvs = len(F)-1
     M, N = srcCoeffs 
     phib_W, phib_E = bdrVals
 
-    fwW = (xc[1:] - xf[1:-1]) / (xc[1:] - xc[:-1])
-    feE = (xf[1:-1] - xc[:-1]) / (xc[1:] - xc[:-1])
+    fwW, feE = lic(mesh)
     aW = np.amax(
            np.column_stack((np.zeros(ncvs-1), D[1:-1] + F[1:-1]*fwW, F[1:-1])),
          axis=1)
