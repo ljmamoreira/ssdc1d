@@ -19,7 +19,7 @@ def lic(mesh):
 #Convected interpolatios coefficients, computed at faces inner (N-1 elements)
 #At the W boundary gwW=1; at the E boundary geE=1
 def cic(P):
-    xsi = 1.0
+    xsi = 0.1
     f = P[1:-1] / (xsi + np.abs(P[1:-1]))
     hwW = 0.5 * (1.0 + f)  #needed for CVs 1:
     heE = 0.5 * (1.0 - f)  #needed for CVs :-1
@@ -118,14 +118,6 @@ def cai(mesh, FD, srcCoeffs, bdrVals):
     geE = feE * heE / (1- feE - heE + 2*feE*heE)
     gwW = fwW * hwW / (1- fwW - hwW + 2*fwW*hwW)
     
-    print "feE:",feE
-    print "fwW:",fwW
-    print "heE:",heE
-    print "hwW:",hwW
-    print "geE:",geE
-    print "gwW:",gwW
-
-
     aW = D[1:-1] + F[1:-1] * gwW 
     aW = np.insert(aW, 0, 0.0)
     aE = D[1:-1] - F[1:-1] * geE

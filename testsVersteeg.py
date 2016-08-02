@@ -15,8 +15,12 @@ import cddiscretize as discr
 import solve
 import analytic
 
-#Define here a local version of init(), in order to keep the parameters
 
+#pretty printer for arrays
+def printArray(a,label=""):
+    print label+" "+' '.join('{:7.4f}'.format(x) for x in a)
+
+#Define here a local version of init(), in order to keep the parameters
 def init(mesh):
     """init(mesh). Defines the values for density, velocity, conduction
        coefficient, convection and diffusion strength parameters F and D
@@ -28,8 +32,8 @@ def init(mesh):
     #DO NOT CHANGE THE VALUES!
 
     #Density, velocity, convection strength parameter F:
-    rho = 1.0
-    v = 5.5
+    rho = 1.5
+    v = 1.1
     F = np.ones_like(xf) * rho * v
 
     #Conduction coefficient and diffusion strength parameter D:
@@ -39,6 +43,7 @@ def init(mesh):
     D[0] = gamma / (xc[0] - xf[0])
     D[-1] = gamma / (xf[-1] - xc[-1])
 
+    printArray(F/D, "P:")
     #Source terms
     M = np.zeros_like(xc)
     N = np.zeros_like(xc)
@@ -84,7 +89,7 @@ def test_ucmesh():
 
 
 def test_lds():
-    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    mesh = meshmaker.ucmesh(25, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
@@ -97,24 +102,25 @@ def test_lds():
 #    printReport("aE", aEExpected, aE)
 #    printReport("b",  bExpected, b)
 
-    print "aW:",aW
-    print "aE:",aE
-    print "aP:",aP
-    print "bP:",b
+    printArray(aW, "aW:")
+    printArray(aE, "aE:")
+    printArray(aP, "aP:")
+    printArray(b,  "bP:")
+    printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
     ylds = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [1.0356, 0.8694, 1.2573, 0.3521, 2.4644]
     xc, xf = mesh
     f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     yanalytic = f_ana(xc)
-    print "  #      x        yc        ye        ya"
-    for i,(x,y,ye,ya) in enumerate(zip(xc,ylds,yexpected,yanalytic)):
-        print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "  #      x        yc         ya"
+    for i,(x,y,ya) in enumerate(zip(xc,ylds,yanalytic)):
+        print ("{:2d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
     print "Error: ",f_ana.error(xc,ylds)
     
 
 
 def test_uws():
-    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    mesh = meshmaker.ucmesh(25, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = discr.stdEqCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
@@ -131,19 +137,20 @@ def test_uws():
     print "aE:",aE
     print "aP:",aP
     print "bP:",b
+    print "Scarborough:", (np.abs(aE) + np.abs(aW))/np.abs(aP)
     yuws = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [0.9998, 0.9987, 0.9921, 0.9524, 0.7143]
     xc, xf = mesh
     f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     yanalytic = f_ana(xc)
-    print "  #      x        yc        ye        ya"
-    for i,(x,y,ye,ya) in enumerate(zip(xc,yuws,yexpected,yanalytic)):
-        print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "  #      x        yc        ya"
+    for i,(x,y,ya) in enumerate(zip(xc,yuws,yanalytic)):
+        print ("{:2d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
     print "Error: ",f_ana.error(xc,yuws)
 
 
 def test_hyb():
-    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    mesh = meshmaker.ucmesh(25, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = discr.stdEqCoeffs("hyb", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
@@ -165,22 +172,23 @@ def test_hyb():
     xc, xf = mesh
     f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     yanalytic = f_ana(xc)
-    print "  #      x        yc        ye        ya"
-    for i,(x,y,ye,ya) in enumerate(zip(xc,yhyb,yexpected,yanalytic)):
-        print ("{:3d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
+    print "  #      x        yc        ya"
+    for i,(x,y,ya) in enumerate(zip(xc,yhyb,yanalytic)):
+        print ("{:3d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
     print "Error: ",f_ana.error(xc,yhyb)
 
 
 def test_cai():
-    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    mesh = meshmaker.ucmesh(25, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
 
-    print "aW:",aW
-    print "aE:",aE
-    print "aP:",aP
-    print "bP:",b
+    printArray(aW, "aW:")
+    printArray(aE, "aE:")
+    printArray(aP, "aP:")
+    printArray(b,  "bP:")
+    printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
     ycai = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
     f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
