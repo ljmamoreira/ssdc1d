@@ -28,7 +28,7 @@ class AnalyticSolution(object):
         return _solution(x, self.x0, self.x1, self.phiA, self.phiB, self.mu)
 
     def error(self,x,yc):
-        delta = yc - self(x)
+        delta = (yc - self(x))
         return np.sqrt(np.dot(delta,delta)/len(delta))
 
 

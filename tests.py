@@ -29,7 +29,7 @@ def init(mesh):
 
     #Density, velocity, convection strength parameter F:
     rho = 1.0
-    v = 2.5
+    v = 5.5
     F = np.ones_like(xf) * rho * v
 
     #Conduction coefficient and diffusion strength parameter D:
@@ -92,10 +92,15 @@ def test_lds():
     aWExpected = np.array([ 0.00,  1.75,  1.75,  1.75,  1.75])
     aEExpected = np.array([-0.75, -0.75, -0.75, -0.75,  0.00])
     bExpected =  np.array([ 3.50,  0.00,  0.00,  0.00,  0.00])
-    printReport("aP", aPExpected, aP)
-    printReport("aW", aWExpected, aW)
-    printReport("aE", aEExpected, aE)
-    printReport("b",  bExpected, b)
+#    printReport("aP", aPExpected, aP)
+#    printReport("aW", aWExpected, aW)
+#    printReport("aE", aEExpected, aE)
+#    printReport("b",  bExpected, b)
+
+    print "aW:",aW
+    print "aE:",aE
+    print "aP:",aP
+    print "bP:",b
     ylds = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [1.0356, 0.8694, 1.2573, 0.3521, 2.4644]
     xc, xf = mesh
@@ -104,7 +109,7 @@ def test_lds():
     print "  #      x        yc        ye        ya"
     for i,(x,y,ye,ya) in enumerate(zip(xc,ylds,yexpected,yanalytic)):
         print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
-    print "Error: ",f_ana.error(x,ylds)
+    print "Error: ",f_ana.error(xc,ylds)
     
 
 
@@ -117,10 +122,15 @@ def test_uws():
     aWExpected = np.array([ 0.00,  3.00,  3.00,  3.00,  3.00])
     aEExpected = np.array([ 0.50,  0.50,  0.50,  0.50,  0.00])
     bExpected =  np.array([ 3.50,  0.00,  0.00,  0.00,  0.00])
-    printReport("aP", aPExpected, aP)
-    printReport("aW", aWExpected, aW)
-    printReport("aE", aEExpected, aE)
-    printReport("b",  bExpected, b)
+#    printReport("aP", aPExpected, aP)
+#    printReport("aW", aWExpected, aW)
+#    printReport("aE", aEExpected, aE)
+#    printReport("b",  bExpected, b)
+
+    print "aW:",aW
+    print "aE:",aE
+    print "aP:",aP
+    print "bP:",b
     yuws = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [0.9998, 0.9987, 0.9921, 0.9524, 0.7143]
     xc, xf = mesh
@@ -129,7 +139,8 @@ def test_uws():
     print "  #      x        yc        ye        ya"
     for i,(x,y,ye,ya) in enumerate(zip(xc,yuws,yexpected,yanalytic)):
         print ("{:2d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
-    print "Error: ",f_ana.error(x,yuws)
+    print "Error: ",f_ana.error(xc,yuws)
+
 
 def test_hyb():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
@@ -140,10 +151,15 @@ def test_hyb():
     aWExpected = np.array([0.000, 2.500, 2.500, 2.500, 2.500])
     aEExpected = np.array(5*[0.000])
     bExpected = np.array([3.500, 0.000, 0.000, 0.000, 0.000])
-    printReport("aP", aPExpected, aP)
-    printReport("aW", aWExpected, aW)
-    printReport("aE", aEExpected, aE)
-    printReport("b",  bExpected, b)
+#    printReport("aP", aPExpected, aP)
+#    printReport("aW", aWExpected, aW)
+#    printReport("aE", aEExpected, aE)
+#    printReport("b",  bExpected, b)
+
+    print "aW:",aW
+    print "aE:",aE
+    print "aP:",aP
+    print "bP:",b
     yhyb = np.around(solve.solve(stdFormCoeffs),decimals=4)
     yexpected = [1.000, 1.000, 1.000, 1.000,0.7143]
     xc, xf = mesh
@@ -152,9 +168,28 @@ def test_hyb():
     print "  #      x        yc        ye        ya"
     for i,(x,y,ye,ya) in enumerate(zip(xc,yhyb,yexpected,yanalytic)):
         print ("{:3d}  "+"{:4f}  "*4).format(i+1, x, y,ye, ya)
-    print "Error: ",f_ana.error(x,yhyb)
-def test_ais():
-    pass
+    print "Error: ",f_ana.error(xc,yhyb)
+
+
+def test_cai():
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    FD, srcCoeffs, bdrVals, mu = init(mesh)
+    stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
+    aP, aW, aE, b = stdFormCoeffs
+
+    print "aW:",aW
+    print "aE:",aE
+    print "aP:",aP
+    print "bP:",b
+    ycai = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    xc, xf = mesh
+    f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    yanalytic = f_ana(xc)
+    print "  #      x        yc        ya"
+    for i,(x,y,ya) in enumerate(zip(xc,ycai,yanalytic)):
+        print ("{:3d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
+    print "Error: ",f_ana.error(xc,ycai)
+
 
 if __name__ == "__main__":
     print "LDS:"
@@ -166,3 +201,7 @@ if __name__ == "__main__":
     print "HYB:"
     test_hyb()
     print
+    print "CAI:"
+    test_cai()
+    print
+    
