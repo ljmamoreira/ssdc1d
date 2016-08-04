@@ -2,7 +2,7 @@ Code and data for the adptative interpolation scheme and comparison.
 José Amoreira (ljma), July 2016
 
 
-ais -> adaptative interpolation scheme
+cai -> convection-adaptated interpolation scheme
 lds -> linear differencing scheme
 uws -> up-wind scheme
 hs  -> hybrid scheme

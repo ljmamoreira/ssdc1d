@@ -1,5 +1,5 @@
 #coding: utf8
-#File tests.py
+#File testsVersteeg.py
 #José Amoreira
 #July 2016
 
@@ -10,15 +10,10 @@
 import numpy as np
 import meshmaker
 import cddiscretize as discr
-#import lds
-#import uw
 import solve
 import analytic
+import aux
 
-
-#pretty printer for arrays
-def printArray(a,label=""):
-    print label+" "+' '.join('{:7.4f}'.format(x) for x in a)
 
 #Define here a local version of init(), in order to keep the parameters
 def init(mesh,velocity):
@@ -43,7 +38,7 @@ def init(mesh,velocity):
     D[0] = gamma / (xc[0] - xf[0])
     D[-1] = gamma / (xf[-1] - xc[-1])
 
-    printArray(F/D, "P:")
+    aux.printArray(F/D, "P:")
     #Source terms
     M = np.zeros_like(xc)
     N = np.zeros_like(xc)
@@ -70,6 +65,7 @@ def okIfTrue(ok):
     return "Wrong"
 
 
+#Print report of comparison with V&M solutions. Return True if tests pass
 def report_aPWEb(computed, versteeg):
     aPc, aWc, aEc, bPc = computed
     aPv, aWv, aEv, bPv = versteeg
@@ -86,6 +82,7 @@ def report_aPWEb(computed, versteeg):
         zip(computed, versteeg)])
 
 
+#Print report of comparison with V&M solutions. Return True if tests pass
 def report_y(xc, yc, yv, ya):
     print
     print ("{:^2s}  {:^3s}" + 3*"  {:^6s}").format('i', 'x', 'yc', 'yv', 'ya')
@@ -125,7 +122,7 @@ def test_V51i():
     passed = report_aPWEb((aP,aW,aE,bP), (aP_v,aW_v,aE_v,bP_v))
     yc = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    fa = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    fa = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     ya = fa(xc)
     yv = [0.9421, 0.8006, 0.6276, 0.4163, 0.1579]
     passed = passed and report_y(xc, yc, yv, ya)
@@ -148,7 +145,7 @@ def test_V51ii():
     passed = report_aPWEb((aP,aW,aE,bP), (aP_v,aW_v,aE_v,bP_v))
     yc = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    fa = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    fa = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     ya = fa(xc)
     yv = [1.0356, 0.8694, 1.2573, 0.3521, 2.4644]
     passed = report_y(xc, yc, yv, ya) and passed
@@ -170,7 +167,7 @@ def test_V52i():
     passed = report_aPWEb((aP,aW,aE,bP), (aP_v,aW_v,aE_v,bP_v))
     yc = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    fa = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    fa = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     ya = fa(xc)
     yv = [0.9337, 0.7879, 0.6130, 0.4031, 0.1512]
     passed = report_y(xc, yc, yv, ya) and passed
@@ -193,7 +190,7 @@ def test_V52i():
     passed = report_aPWEb((aP,aW,aE,bP), (aP_v,aW_v,aE_v,bP_v))
     yc = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    fa = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    fa = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     ya = fa(xc)
     yv = [0.9998, 0.9987, 0.9921, 0.9524, 0.7143]
     passed = report_y(xc, yc, yv, ya) and passed
@@ -216,7 +213,7 @@ def test_V53():
     passed = report_aPWEb((aP,aW,aE,bP), (aP_v,aW_v,aE_v,bP_v))
     yc = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    fa = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    fa = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     ya = fa(xc)
     yv = [1.0000, 1.0000, 1.0000, 1.0000, 0.7143]
     passed = report_y(xc, yc, yv, ya) and passed
@@ -224,21 +221,21 @@ def test_V53():
 
 
 
-
+#Remove this when ss1dcd.py passes simple tests
 def test_cai():
     mesh = meshmaker.ucmesh(25, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh)
     stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
 
-    printArray(aW, "aW:")
-    printArray(aE, "aE:")
-    printArray(aP, "aP:")
-    printArray(b,  "bP:")
-    printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
+    aux.printArray(aW, "aW:")
+    aux.printArray(aE, "aE:")
+    aux.printArray(aP, "aP:")
+    aux.printArray(b,  "bP:")
+    aux.printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
     ycai = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
-    f_ana = analytic.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+    f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     yanalytic = f_ana(xc)
     print "  #      x        yc        ya"
     for i,(x,y,ya) in enumerate(zip(xc,ycai,yanalytic)):

@@ -1,0 +1,8 @@
+Entry #1 2016-08-04
+    Module testsVersteeg includes functions report_aPWEb(c,v) and
+    report_y(x,yc,yv,ya) to pretty-print reports on the coefficients and on the
+    solution. Shoud these functions be moved to module aux?
+    In favor: these are auxiliary functions, makes sense to move them
+    Against:  these functions are specific to the Versteeg tests.
+    Decision: Better write more general report functions in module aux. If they
+        can be made usable for the Versteeg tests, even better.

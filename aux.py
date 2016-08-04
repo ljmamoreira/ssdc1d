@@ -1,15 +1,25 @@
 #coding: utf8
-#File analytic.py
+#File aux.py
 #José Amoreira
-#July 2016
+#August 2016
+
+#Simple auxiliary functions
+
+import numpy as np
+
+
+#pretty printer for arrays
+def printArray(a,label=""):
+    print label+" "+' '.join('{:7.4f}'.format(x) for x in a)
+
+
+
 
 #Calculation of analytic solution and L2 error
 #The analytic function is created with the desired parameters via
 #myFunc = AnalyticSolution(x0,x1, (y0,y1), mu)
 #Then it can be called simply by: myFunc(x)
 #To find the error of a solution x,y: myFunc.error(x,y)
-
-import numpy as np
 
 def _solution(x, x0, x1, y0, y1, mu):
     ex = np.exp(mu*x)
@@ -30,5 +40,3 @@ class AnalyticSolution(object):
     def error(self,x,yc):
         delta = (yc - self(x))
         return np.sqrt(np.dot(delta,delta)/len(delta))
-
-
