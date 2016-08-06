@@ -11,7 +11,6 @@ import numpy as np
 import meshmaker
 import cddiscretize as discr
 import solve
-import analytic
 import aux
 
 
@@ -223,8 +222,8 @@ def test_V53():
 
 #Remove this when ss1dcd.py passes simple tests
 def test_cai():
-    mesh = meshmaker.ucmesh(25, 0.0, 1.0)
-    FD, srcCoeffs, bdrVals, mu = init(mesh)
+    mesh = meshmaker.ucmesh(5, 0.0, 1.0)
+    FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=2.5)
     stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
 
@@ -254,4 +253,6 @@ if __name__ == "__main__":
     print "Global result:", okIfTrue(passed)
     passed = test_V53() and passed
     print "Global result:", okIfTrue(passed)
+
+    test_cai()
     
