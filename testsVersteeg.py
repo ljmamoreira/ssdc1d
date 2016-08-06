@@ -254,5 +254,3 @@ if __name__ == "__main__":
     passed = test_V53() and passed
     print "Global result:", okIfTrue(passed)
 
-    test_cai()
-    
