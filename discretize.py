@@ -1,5 +1,5 @@
 #coding: utf8
-#File cddiscretize.py
+#File discretize.py
 #José Amoreira
 #July 2016
 
@@ -18,8 +18,7 @@ def lic(mesh):
 
 #Convected interpolatios coefficients, computed at faces inner (N-1 elements)
 #At the W boundary gwW=1; at the E boundary geE=1
-def cic(P):
-    xsi = 0.5
+def cic(P,xsi=0.5):
     f = P[1:-1] / (xsi + np.abs(P[1:-1]))
     hwW = 0.5 * (1.0 + f)  #needed for CVs 1:
     heE = 0.5 * (1.0 - f)  #needed for CVs :-1
@@ -27,7 +26,7 @@ def cic(P):
 
 
 #Different schemes implemented
-def lds(mesh, FD, srcCoeffs, bdrVals):
+def lds(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     F, D = FD
     M, N = srcCoeffs
     phib_W, phib_E = bdrVals
@@ -51,7 +50,7 @@ def lds(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def uws(mesh, FD, srcCoeffs, bdrVals):
+def uws(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     F, D = FD
     M, N = srcCoeffs 
     phib_W, phib_E =bdrVals
@@ -74,7 +73,7 @@ def uws(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def hyb(mesh, FD, srcCoeffs, bdrVals):
+def hyb(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     F, D = FD
     ncvs = len(F)-1
     M, N = srcCoeffs 
@@ -108,12 +107,13 @@ def hyb(mesh, FD, srcCoeffs, bdrVals):
     return (aP, aW, aE, b)
 
 
-def cai(mesh, FD, srcCoeffs, bdrVals):
+def cai(mesh, FD, srcCoeffs, bdrVals, **kwargs):
+    xsi = kwargs["xsi"]
     F, D = FD
     M, N = srcCoeffs
     phib_W, phib_E = bdrVals
     fwW, feE = lic(mesh)
-    hwW, heE = cic(F/D)
+    hwW, heE = cic(F/D,xsi)
 
     geE = feE * heE / (1- feE - heE + 2*feE*heE)
     gwW = fwW * hwW / (1- fwW - hwW + 2*fwW*hwW)
@@ -139,18 +139,19 @@ def cai(mesh, FD, srcCoeffs, bdrVals):
 schemeFunc = {"lds": lds, "uws": uws, "hyb": hyb, "cai": cai}
 
 
-def stdEqCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals):
-    """mkcoeffs(mesh, FD, scrCoeffs, bdrVals).
+def mkCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals, **kwargs):
+    """mkCoeffs(mesh, FD, scrCoeffs, bdrVals, **kwargs).
        Computes the standard form coefficients for diffusion with given
        convection 1D steady-state problem.
        scheme: (string, one of "lds", "uw", "hyb", "ais") scheme used
        FD: (F, D)
        F and D: (ndarrays) convection and diffusion strength coefficients
        srcCoeffs: (tuple) M and N arrays representing the source
-       bdrVals: (tuple) lower and upper boudary values.
+       bdrVals: (tuple) lower and upper boundary values.
+       kwargs: optional aditional keyword args needed by chosen scheme
     """
     
-    aP, aW, aE, b = schemeFunc[scheme](mesh, FD, srcCoeffs, bdrVals)
+    aP, aW, aE, b = schemeFunc[scheme](mesh, FD, srcCoeffs, bdrVals, **kwargs)
 
     return aP, aW, aE, b
 

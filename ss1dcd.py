@@ -10,7 +10,7 @@
 import numpy as np
 import sys
 import meshmaker
-import cddiscretize as discr
+import discretize as discr
 import solve
 import aux
 
@@ -21,6 +21,8 @@ if __name__ == "__main__":
     n = 5
     v = 2.5; rho=1.0; gamma = 0.1;
     phib_W=1.0; phib_E=0.0
+    xsi = 0.5
+    meth = "cai"
     #Update from assignments (syntax: var=val) in the command line 
     for assignment in sys.argv[1:]:
         var,val = (x.strip() for x in assignment.split("="))
@@ -28,11 +30,13 @@ if __name__ == "__main__":
 
     print "Parameters:"
     print "n =  ", n
+    print "meth=", meth
     print "v =  ", v
     print "rho =", rho
     print "gam =", gamma
     print "phia=", phib_W
     print "phib=", phib_E
+    print "xsi= ", xsi
 
     mu = rho * v / gamma
 
@@ -52,7 +56,7 @@ if __name__ == "__main__":
 
     bdrVals = (phib_W, phib_E)
 
-    stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs(meth, mesh, FD, srcCoeffs, bdrVals, xsi=xsi)
     aP, aW, aE, b = stdFormCoeffs
     
     aux.printArray(aW, "aW:")
