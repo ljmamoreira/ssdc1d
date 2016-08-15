@@ -37,8 +37,8 @@ def lds(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     aE = D[1:-1] - F[1:-1] * feE
     aE = np.append(aE, 0.0)
     
-    S = M
-    b = N
+    S = M.copy()
+    b = N.copy()
     S[0]  -= D[0]  + F[0]
     b[0]  += (D[0]  + F[0])  * phib_W
 
@@ -60,8 +60,8 @@ def uws(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     aE = D[1:-1] + np.maximum(0.0, -F[1:-1])
     aE = np.append(aE, 0.0)
     
-    S = M
-    b = N
+    S = M.copy()
+    b = N.copy()
     S[0]  -= D[0]  + np.maximum(0.0,  F[0])
     b[0]  += (D[0]  + np.maximum(0.0, F[0] )) * phib_W
 
@@ -88,8 +88,9 @@ def hyb(mesh, FD, srcCoeffs, bdrVals, **kwargs):
            np.column_stack((-F[1:-1], D[1:-1] - F[1:-1]*feE, np.zeros(ncvs-1))),
             axis=1)
     aE = np.append(aE, 0.0)
-    S = M
-    b = N
+
+    S = M.copy()
+    b = N.copy()
     Xw = D[0]
     if F[0] > -D[0]:
         Xw += F[0]
@@ -123,8 +124,8 @@ def cai(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     aE = D[1:-1] - F[1:-1] * geE
     aE = np.append(aE, 0.0)
     
-    S = M
-    b = N
+    S = M.copy()
+    b = N.copy()
     S[0]  -= D[0]  + F[0] * hwW[0]
     b[0]  += (D[0]  + F[0] * hwW[0])  * phib_W
 
@@ -151,6 +152,19 @@ def mkCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals, **kwargs):
        kwargs: optional aditional keyword args needed by chosen scheme
     """
     
+#    print "\nIn mkCoeffs. Parameter values below"
+#    print "Scheme:", scheme
+#    print "Mesh:"
+#    print "    xc:", mesh[0]
+#    print "    xf:", mesh[1]
+#    print "F:", FD[0]
+#    print "D:", FD[1]
+#    print "srcCoeffs:"
+#    print  "    M:", srcCoeffs[0]
+#    print  "    N:", srcCoeffs[1]
+#    print "bdrVals:", bdrVals[0], bdrVals[1]
+#    print "More:", kwargs
+
     aP, aW, aE, b = schemeFunc[scheme](mesh, FD, srcCoeffs, bdrVals, **kwargs)
 
     return aP, aW, aE, b

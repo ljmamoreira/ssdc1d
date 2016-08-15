@@ -13,13 +13,52 @@ import meshmaker
 import discretize as discr
 import solve
 import aux
+from scipy.optimize import minimize
+
+
+
+
+#def fvL2Error(meth, mesh, FD, srcCoeffs, bdrVals, xsi):
+#    stdFormCoeffs = discr.mkCoeffs(meth, mesh, FD, srcCoeffs, bdrVals, xsi=xsi)
+#    yfv = solve.solve(stdFormCoeffs)
+#    xc = mesh[0]
+#    v, rho, gamma = physPars
+#    mu = rho * v / gamma
+#    f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+#    return f_ana.error(xc,yfv)
+
+class FVSolution(object):
+    def __init__(self,mesh,meth,FD,srcCoeffs, bdrVals, xsi):
+        self.mesh = mesh
+        self.meth = meth
+        self.FD = FD
+        self.srcCoeffs = srcCoeffs
+        self.bdrVals = bdrVals
+        self.xsi = xsi
+        F,D = FD
+        self.xc, self.xf = mesh
+        dx0 = xc[0] - xf[0]
+        mu = F[0] / (D[0] * dx0)
+        self.f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
+
+    def compute(self):
+        self.stdFormCoeffs = discr.mkCoeffs(self.meth, self.mesh, self.FD,
+                self.srcCoeffs, self.bdrVals, xsi=self.xsi)
+        self.yfv = solve.solve(self.stdFormCoeffs)
+
+
+    def eofxsi(self,xsi):
+        self.xsi = xsi
+        self.compute()
+        return self.f_ana.error(self.xc,self.yfv)
+        
 
 
 if __name__ == "__main__":
 
     #Default parameter values
     n = 5
-    v = 2.5; rho=1.0; gamma = 0.1;
+    v = 2.5; rho=1.0; gamma = 0.1
     phib_W=1.0; phib_E=0.0
     xsi = 0.5
     meth = "cai"
@@ -28,49 +67,60 @@ if __name__ == "__main__":
         var,val = (x.strip() for x in assignment.split("="))
         locals()[var] = type(locals()[var])(val)
 
-    print "Parameters:"
-    print "n =  ", n
-    print "meth=", meth
-    print "v =  ", v
-    print "rho =", rho
-    print "gam =", gamma
-    print "phia=", phib_W
-    print "phib=", phib_E
-    print "xsi= ", xsi
+    bdrVals = (phib_W, phib_E)
 
-    mu = rho * v / gamma
+    M = np.zeros(n)
+    N = np.zeros(n)
+    srcCoeffs = (M,N)
+
 
     mesh = meshmaker.ucmesh(n, 0.0, 1.0)
     xc, xf = mesh
 
-    F = np.ones_like(xf) * rho * v
-    D = np.zeros_like(xf)
-    D[1:-1] = gamma / (xc[1:] - xc[:-1])
-    D[0] = gamma / (xc[0] - xf[0])
-    D[-1] = gamma / (xf[-1] - xc[-1])
-    FD = (F,D)
+    bxsi = []
+    for v in (0.1*i for i in range(1,41)):
+        line = "{:4.2f}   ".format(v)
+        physPars = (v, rho, gamma)
+        F = np.ones_like(xf) * rho * v
+        D = np.zeros_like(xf)
+        D[1:-1] = gamma / (xc[1:] - xc[:-1])
+        D[0] = gamma / (xc[0] - xf[0])
+        D[-1] = gamma / (xf[-1] - xc[-1])
+        FD = (F,D)
+        for meth in ("lds", "uws", "hyb", "cai"):
+            FVsys = FVSolution(mesh,meth,FD,srcCoeffs, bdrVals, xsi)
 
-    M = np.zeros_like(xc)
-    N = np.zeros_like(xc)
-    srcCoeffs = (M,N)
+            if meth == "cai":
+                optimal = minimize(FVsys.eofxsi, 0.5)
+                err = optimal.fun
+                bxsi.append(optimal.x[0])
+            else:
+                err = FVsys.eofxsi(0.5)
+            line += "{:6.4e}  ".format(err)
+        print line
 
-    bdrVals = (phib_W, phib_E)
+    print
+    bxsi = np.array(bxsi)
+    best_xsi = np.average(bxsi)
+    print "Average xsi:", best_xsi
+    print "Std xsi:    ", np.std(bxsi)
 
-    stdFormCoeffs = discr.mkCoeffs(meth, mesh, FD, srcCoeffs, bdrVals, xsi=xsi)
-    aP, aW, aE, b = stdFormCoeffs
-    
-    aux.printArray(aW, "aW:")
-    aux.printArray(aE, "aE:")
-    aux.printArray(aP, "aP:")
-    aux.printArray(b,  "bP:")
-    aux.printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
-    ycai = np.around(solve.solve(stdFormCoeffs),decimals=4)
-    xc, xf = mesh
-    f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
-    yanalytic = f_ana(xc)
-    print "  #      x        yc        ya"
-    for i,(x,y,ya) in enumerate(zip(xc,ycai,yanalytic)):
-        print ("{:3d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
-    print "Error: ",f_ana.error(xc,ycai)
+    with open('errtab.dat','w') as ofile:
+        print ("{:^7s}"+4*"{:^12s}").format("v","lds","uws","hyb","cai")
+        for v in (0.1*i for i in range(1,41)):
+            line = "{:4.2f}   ".format(v)
+            physPars = (v, rho, gamma)
+            F = np.ones_like(xf) * rho * v
+            D = np.zeros_like(xf)
+            D[1:-1] = gamma / (xc[1:] - xc[:-1])
+            D[0] = gamma / (xc[0] - xf[0])
+            D[-1] = gamma / (xf[-1] - xc[-1])
+            FD = (F,D)
+            for meth in ("lds", "uws", "hyb", "cai"):
+                FVsys = FVSolution(mesh,meth,FD,srcCoeffs, bdrVals, xsi)
+                err = FVsys.eofxsi(best_xsi)
+                line += "{:6.4e}  ".format(err)
+            ofile.write(line+'\n')
+            print line
 
 
