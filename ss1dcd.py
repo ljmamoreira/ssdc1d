@@ -78,6 +78,7 @@ if __name__ == "__main__":
     xc, xf = mesh
 
     bxsi = []
+    print ("{:^7s}"+4*"{:^12s}"+"{:^6s}").format("v","lds","uws","hyb","cai", "bxsi")
     for v in (0.1*i for i in range(1,41)):
         line = "{:4.2f}   ".format(v)
         physPars = (v, rho, gamma)
@@ -93,10 +94,12 @@ if __name__ == "__main__":
             if meth == "cai":
                 optimal = minimize(FVsys.eofxsi, 0.5)
                 err = optimal.fun
-                bxsi.append(optimal.x[0])
+                best_xsi = optimal.x[0]
+                bxsi.append(best_xsi)
+                line += "{:6.4e}  {:6.4f}".format(err,best_xsi)
             else:
                 err = FVsys.eofxsi(0.5)
-            line += "{:6.4e}  ".format(err)
+                line += "{:6.4e}  ".format(err)
         print line
 
     print
