@@ -9,7 +9,7 @@
 
 import numpy as np
 import meshmaker
-import cddiscretize as discr
+import discretize as discr
 import solve
 import aux
 
@@ -112,7 +112,7 @@ def test_V51i():
     print "V&M, Example 5.1(i): LDS, N=5, v=0.1"
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=0.1)
-    stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, bP = stdFormCoeffs
     aP_v = [1.55, 1.00, 1.00, 1.00, 1.45]
     aW_v = [0.00, 0.55, 0.55, 0.55, 0.55]
@@ -135,7 +135,7 @@ def test_V51ii():
     print "V&M, Example 5.1(ii): LDS, N=5, v=2.5"
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=2.5)
-    stdFormCoeffs = discr.stdEqCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("lds",mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, bP = stdFormCoeffs
     aP_v = [2.75, 1.00, 1.00, 1.00, 0.25]
     aW_v = [0.00, 1.75, 1.75, 1.75, 1.75]
@@ -157,7 +157,7 @@ def test_V52i():
     print "V&M, Example 5.2(i): UWS, N=5, v=0.1"
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=0.1)
-    stdFormCoeffs = discr.stdEqCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, bP = stdFormCoeffs
     aP_v = np.array([ 1.60,  1.10,  1.10,  1.10,  1.60])
     aW_v = np.array([ 0.00,  0.60,  0.60,  0.60,  0.60])
@@ -180,7 +180,7 @@ def test_V52i():
     print "V&M, Example 5.2(ii): UWS, N=5, v=2.5"
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=2.5)
-    stdFormCoeffs = discr.stdEqCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("uws", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, bP = stdFormCoeffs
     aP_v = np.array([ 4.00,  3.50,  3.50,  3.50,  4.00])
     aW_v = np.array([ 0.00,  3.00,  3.00,  3.00,  3.00])
@@ -203,7 +203,7 @@ def test_V53():
     print "V&M, Example 5.3: HYB, N=5, v=2.5"
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=2.5)
-    stdFormCoeffs = discr.stdEqCoeffs("hyb", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("hyb", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, bP = stdFormCoeffs
     aP_v = np.array([ 3.50,  2.50,  2.50,  2.50,  3.50])
     aW_v = np.array([ 0.00,  2.50,  2.50,  2.50,  2.50])
@@ -221,10 +221,10 @@ def test_V53():
 
 
 #Remove this when ss1dcd.py passes simple tests
-def test_cai():
+def test_cas():
     mesh = meshmaker.ucmesh(5, 0.0, 1.0)
     FD, srcCoeffs, bdrVals, mu = init(mesh, velocity=2.5)
-    stdFormCoeffs = discr.stdEqCoeffs("cai", mesh, FD, srcCoeffs, bdrVals)
+    stdFormCoeffs = discr.mkCoeffs("cas", mesh, FD, srcCoeffs, bdrVals)
     aP, aW, aE, b = stdFormCoeffs
 
     aux.printArray(aW, "aW:")
@@ -232,14 +232,14 @@ def test_cai():
     aux.printArray(aP, "aP:")
     aux.printArray(b,  "bP:")
     aux.printArray((np.abs(aE) + np.abs(aW))/np.abs(aP), "Sc:")
-    ycai = np.around(solve.solve(stdFormCoeffs),decimals=4)
+    ycas = np.around(solve.solve(stdFormCoeffs),decimals=4)
     xc, xf = mesh
     f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
     yanalytic = f_ana(xc)
     print "  #      x        yc        ya"
-    for i,(x,y,ya) in enumerate(zip(xc,ycai,yanalytic)):
+    for i,(x,y,ya) in enumerate(zip(xc,ycas,yanalytic)):
         print ("{:3d}  "+"{:4f}  "*3).format(i+1, x, y, ya)
-    print "Error: ",f_ana.error(xc,ycai)
+    print "Error: ",f_ana.error(xc,ycas)
 
 
 

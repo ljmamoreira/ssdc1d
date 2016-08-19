@@ -108,7 +108,7 @@ def hyb(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     return (aP, aW, aE, b)
 
 
-def cai(mesh, FD, srcCoeffs, bdrVals, **kwargs):
+def cas(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     xsi = kwargs["xsi"]
     F, D = FD
     M, N = srcCoeffs
@@ -137,7 +137,7 @@ def cai(mesh, FD, srcCoeffs, bdrVals, **kwargs):
     return (aP, aW, aE, b)
 
 
-schemeFunc = {"lds": lds, "uws": uws, "hyb": hyb, "cai": cai}
+schemeFunc = {"lds": lds, "uws": uws, "hyb": hyb, "cas": cas}
 
 
 def mkCoeffs(scheme, mesh, FD, srcCoeffs, bdrVals, **kwargs):
