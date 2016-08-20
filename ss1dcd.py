@@ -31,7 +31,9 @@ class GFVSolution(object):
         dx0 = xc[0] - xf[0]
         mu = F[0] / (D[0] * dx0)
         self.f_ana = aux.AnalyticSolution(0.0, 1.0, bdrVals, mu)
-        self.xsi = 0 #not used. Only for conformance with CASSolution objs
+        #self.xsi is needed for conformance with the interface of
+        #discretize.mkCoeffs (in compute())
+        self.xsi = 0
 
     def compute(self):
         self.stdFormCoeffs = discr.mkCoeffs(self.scheme, self.mesh, self.FD,
