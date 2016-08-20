@@ -6,3 +6,6 @@ Entry #1 2016-08-04
     Against:  these functions are specific to the Versteeg tests.
     Decision: Better write more general report functions in module aux. If they
         can be made usable for the Versteeg tests, even better.
+
+Entry #2 2016-08-20
+    How strong is the dependence of error(CAS) with xsi?
