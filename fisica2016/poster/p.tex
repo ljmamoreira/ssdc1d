@@ -1,6 +1,9 @@
 \documentclass[final,t]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[portuges]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{times}
 
 % poster template
 \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
@@ -23,20 +26,89 @@ convecção}
 %------------------------------------------------------------------------------
 \begin{document}
 
+%twocolumns: width:0.488\linewidth, separated by \hfill
+%singlecolumn: width: \linewidth
 \begin{frame}{}
+    \begin{block}{Introdução}
+    \end{block}
 \begin{columns}[t]
-
 
 %-----------------------------------------------------------------------------
 %                                                                     COLUMN 1
 % ----------------------------------------------------------------------------
-\begin{column}{.488\linewidth}
+\begin{column}{0.488\linewidth}
+    %Introdução
+    \begin{block}{Difusão com convecção}
+        A equação de difusão de uma quantidade conservada com densidade mássica
+        $\phi$, num meio material com densidade $\rho$, em movimento (difusão com
+        convecção) com velocidade $v$, em situações estacionárias e
+        unidimensionais é [refs]
+        \begin{equation*}
+            \frac{d}{dx}(\rho v \phi)=
+            \frac{d}{dx}\left(\Gamma\frac{d\phi}{dx}\right) + S(x),
+        \end{equation*}
+        onde $\Gamma$ é o coeficiente de difusão e $S$ é a densidade de fonte da
+        dita quantidade.
 
-    % MAP problem
-    \begin{exampleblock}{Energy Minimization and MAP Inference}
-        See http://pletscher.org/papers/pletscher2012lpqp-poster.pdf for a
-        full version of this poster.
-    \end{exampleblock}
+        \vspace{5mm}
+        Numa abordagem numérica com o método dos volumes finitos, integra-se
+        esta equação em subintervalos (\emph{volumes de controle,} VC) que
+        constituem uma partição do domínio de integração:
+
+        {\centering
+            \begin{tikzpicture}[scale=2]
+            \def\len{10}
+            \def\hig{0.5}
+            \fill [gray!15] (\len*0.4,-\hig*0.8) rectangle (\len*0.6,\hig*0.8);
+            \draw [thick] (0,-\hig) --+ (0,2*\hig);
+            \draw [thick] (0,0) node[left] {$\phi_A$} -- (0.12*\len,0);
+            \draw (0.12*\len,0)--++(240:0.2)--+(60:0.4);
+            \draw (0.15*\len,0)--++(240:0.2)--+(60:0.4);
+
+            \draw [thick] (0.15*\len,0)--(0.87*\len,0);
+            \draw [thick] (0.9*\len,0)--(\len,0) node[right]{$\phi_B$};
+            \draw (0.87*\len,0)--++(240:0.2)--+(60:0.4);
+            \draw (0.9*\len,0)--++(240:0.2)--+(60:0.4);
+
+            \draw (\len*0.21,\hig*0.8) --+(0,-1.6*\hig);
+            \fill (\len*0.3,0) circle(0.08) node [below] {$W$};
+            \draw (\len*0.4,\hig*0.8) --+(0,-1.6*\hig) node[below] {$w$};
+            \fill (\len/2,0) circle(0.08) node [below] {$P$};
+            \draw (\len*0.6,\hig*0.8) --+(0,-1.6*\hig) node[below] {$e$};
+            \fill (\len*0.7,0) circle(0.08) node [below] {$E$};
+            \draw (\len*0.79,\hig*0.8) --+(0,-1.6*\hig);
+
+            \draw [thick] (\len,-\hig) --+ (0,2*\hig);
+        \end{tikzpicture}
+
+        }
+        Para o VC destacado na figura (com centro no ponto $P$),
+        este procedimento conduz a
+        \begin{equation*}
+            (\rho v \phi)_e - (\rho v \phi)_w \simeq
+            \Gamma_e\left(\frac{d\phi}{dx}\right)_e-
+            \Gamma_w\left(\frac{d\phi}{dx}\right)_w + S_P\delta x_P
+        \end{equation*}
+        Juntando a esta equação as que de modo semelhante obtêm para os restante
+        VC, resulta um sistema de equações algébricas lineares para os valores
+        de $\phi$ nos pontos nodais $W$, $P$, $E$, etc, que pode ser resolvido
+        numericamente.
+
+        \vspace{5mm}
+        Um ingrediente indispensável neste método é a definição de uma regra
+        (\emph{esquema de interpolação}) para estimar os valores do campo $\phi$
+        e do seu gradiente $d\phi/dx$ nas faces ($e$, $w$, etc.) dos VC a partir
+        dos valores de $\phi$ nos pontos nodais $W$, $P$, $E$, etc.
+
+        \vspace{5mm}
+        A qualidade de uma dado esquema de interpolação depende, em geral, da
+        importância relativa dos dois fenómenos de transporte envolvidos, a
+        difusão e a convecção. Tradicionalmente, essa importância é avaliada
+        pelo chamado \emph{número de Peclet},
+        \begin{equation*}
+            P=\frac{\rho v \delta x}{\Gamma}
+        \end{equation*}
+    \end{block}
 
 \end{column}
 
@@ -48,7 +120,7 @@ convecção}
 \begin{column}{.488\linewidth}
   
     % Conclusions
-    \begin{alertblock}{Conclusions}
+    \begin{block}{Esquemas tradicionais e esquema proposto}
         \begin{itemize}
             \item Joint formulation of LP and QP relaxation $\rightarrow$ LPQP.
             \item LPQP solved by a message-passing
@@ -56,14 +128,17 @@ convecção}
             \item Get a smooth objective for free. Key to fast convergence.
             \item Competitive results in terms of MAP state found.
         \end{itemize}
-    \end{alertblock}
+    \end{block}
 
     % References
-    \begin{block}{References}
+    \begin{block}{Referências}
         \vskip -0.8cm
         \footnotesize
         \begin{itemize}
             \item Patankar
+            \item Versteeg \& Malalasekera
+            \item H.~Jing, C.~Li, B.~Zhou, European Conference on Fluid Dynamics
+                ECCOMAS CFD 2006
         \end{itemize}
         \normalsize
         \vskip -0.8cm
