@@ -2,8 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[portuges]{babel}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath}
-\usepackage{times}
+\usepackage{amsmath,pgfplots,times,filecontents}
+\pgfplotsset{compat=1.8}
 
 % poster template
 \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
@@ -29,8 +29,6 @@ convecção}
 %twocolumns: width:0.488\linewidth, separated by \hfill
 %singlecolumn: width: \linewidth
 \begin{frame}{}
-    \begin{block}{Introdução}
-    \end{block}
 \begin{columns}[t]
 
 %-----------------------------------------------------------------------------
@@ -38,76 +36,41 @@ convecção}
 % ----------------------------------------------------------------------------
 \begin{column}{0.488\linewidth}
     %Introdução
-    \begin{block}{Difusão com convecção}
-        A equação de difusão de uma quantidade conservada com densidade mássica
-        $\phi$, num meio material com densidade $\rho$, em movimento (difusão com
-        convecção) com velocidade $v$, em situações estacionárias e
-        unidimensionais é [refs]
-        \begin{equation*}
-            \frac{d}{dx}(\rho v \phi)=
-            \frac{d}{dx}\left(\Gamma\frac{d\phi}{dx}\right) + S(x),
-        \end{equation*}
-        onde $\Gamma$ é o coeficiente de difusão e $S$ é a densidade de fonte da
-        dita quantidade.
-
-        \vspace{5mm}
-        Numa abordagem numérica com o método dos volumes finitos, integra-se
-        esta equação em subintervalos (\emph{volumes de controle,} VC) que
-        constituem uma partição do domínio de integração:
+    \begin{block}{Introdução --- Esquemas de interpolação}
+        Nas aplicações do método dos volumes finitos, exprimem-se os valores do
+        campo a determinar nas faces dos volumes de controle
+        ($\phi^*_{i\pm1/2}$) como função dos seus valores nos pontos da malha de
+        discretização ($\phi_i$) adotando um \emph{esquema de interpolação.}
 
         {\centering
-            \begin{tikzpicture}[scale=2]
-            \def\len{10}
-            \def\hig{0.5}
-            \fill [gray!15] (\len*0.4,-\hig*0.8) rectangle (\len*0.6,\hig*0.8);
-            \draw [thick] (0,-\hig) --+ (0,2*\hig);
-            \draw [thick] (0,0) node[left] {$\phi_A$} -- (0.12*\len,0);
-            \draw (0.12*\len,0)--++(240:0.2)--+(60:0.4);
-            \draw (0.15*\len,0)--++(240:0.2)--+(60:0.4);
+            \begin{tikzpicture}[scale=4]
+                \def\len{10}
+                \def\hig{0.25}
 
-            \draw [thick] (0.15*\len,0)--(0.87*\len,0);
-            \draw [thick] (0.9*\len,0)--(\len,0) node[right]{$\phi_B$};
-            \draw (0.87*\len,0)--++(240:0.2)--+(60:0.4);
-            \draw (0.9*\len,0)--++(240:0.2)--+(60:0.4);
+                \draw [thick] (0.35*\len,0)--(0.83*\len,0);
+                \node at (1.1*\len,0)
+                    {$\phi^*_{i+1/2}=\phi^*_{i+1/2}(\phi_i,\phi_{i+1},\ldots)$};
 
-            \draw (\len*0.21,\hig*0.8) --+(0,-1.6*\hig);
-            \fill (\len*0.3,0) circle(0.08) node [below] {$W$};
-            \draw (\len*0.4,\hig*0.8) --+(0,-1.6*\hig) node[below] {$w$};
-            \fill (\len/2,0) circle(0.08) node [below] {$P$};
-            \draw (\len*0.6,\hig*0.8) --+(0,-1.6*\hig) node[below] {$e$};
-            \fill (\len*0.7,0) circle(0.08) node [below] {$E$};
-            \draw (\len*0.79,\hig*0.8) --+(0,-1.6*\hig);
-
-            \draw [thick] (\len,-\hig) --+ (0,2*\hig);
-        \end{tikzpicture}
+                \draw (\len*0.4,\hig*0.8) --+(0,-1.6*\hig) node[below] {$i-1/2$} ;
+                \fill (\len/2,0) circle(0.08) node [below] {$i$} node[above] {$\phi_i$};
+                \draw (\len*0.6,\hig*0.8)node [above]{$\phi^*_{i+1/2}$} --+(0,-1.6*\hig) node[below] {$i+1/2$};
+                \fill (\len*0.7,0) circle(0.08) node [below] {$i+1$} node[above]{$\phi_{i+1}$};
+                \draw (\len*0.79,\hig*0.8) --+(0,-1.6*\hig);
+            \end{tikzpicture}
 
         }
-        Para o VC destacado na figura (com centro no ponto $P$),
-        este procedimento conduz a
+        Em problemas de difusão com convecção, a escolha de um esquema de
+        interpolação deve ter em linha de conta a importância relativa dos
+        transporte convectivo e difusivo, tradicionamente avaliada pelo 
+        \emph{número de Peclet} $P$:
         \begin{equation*}
-            (\rho v \phi)_e - (\rho v \phi)_w \simeq
-            \Gamma_e\left(\frac{d\phi}{dx}\right)_e-
-            \Gamma_w\left(\frac{d\phi}{dx}\right)_w + S_P\delta x_P
+            \begin{aligned}
+                |P|&\simeq0&\text{difusão dominante}\\
+                |P|&>>1&\text{convecção dominante}
+            \end{aligned}
         \end{equation*}
-        Juntando a esta equação as que de modo semelhante obtêm para os restante
-        VC, resulta um sistema de equações algébricas lineares para os valores
-        de $\phi$ nos pontos nodais $W$, $P$, $E$, etc, que pode ser resolvido
-        numericamente.
-
-        \vspace{5mm}
-        Um ingrediente indispensável neste método é a definição de uma regra
-        (\emph{esquema de interpolação}) para estimar os valores do campo $\phi$
-        e do seu gradiente $d\phi/dx$ nas faces ($e$, $w$, etc.) dos VC a partir
-        dos valores de $\phi$ nos pontos nodais $W$, $P$, $E$, etc.
-
-        \vspace{5mm}
-        A qualidade de uma dado esquema de interpolação depende, em geral, da
-        importância relativa dos dois fenómenos de transporte envolvidos, a
-        difusão e a convecção. Tradicionalmente, essa importância é avaliada
-        pelo chamado \emph{número de Peclet},
-        \begin{equation*}
-            P=\frac{\rho v \delta x}{\Gamma}
-        \end{equation*}
+        O número de Peclet é proporcional à velocidade da convecção. Assim, tem
+        o sinal da componente relevante da velocidade do escoamento.
     \end{block}
 
 \end{column}
@@ -118,50 +81,267 @@ convecção}
 % ----------------------------------------------------------------------------
 \hfill
 \begin{column}{.488\linewidth}
-  
-    % Conclusions
-    \begin{block}{Esquemas tradicionais e esquema proposto}
+    \begin{block}{Esquemas habitualmente usados}
         \begin{itemize}
-            \item Joint formulation of LP and QP relaxation $\rightarrow$ LPQP.
-            \item LPQP solved by a message-passing
-            algorithm for modified unary potentials.
-            \item Get a smooth objective for free. Key to fast convergence.
-            \item Competitive results in terms of MAP state found.
+            \item Esquema de derivação central (CDS): os valores dos campos nas
+                faces dos VC são expressos como interpolações lineares dos
+                valores nos pontos nodais\\
+                Bons resultados sem escoamento, problemas de estabilidade com
+                escoamentos pronunciados.
+            \item Esquema \emph{upwind} (UWS): os valores dos campos nas  faces
+                dos VC são tomados iguais aos valores nos pontos nodais a
+                montante no escoamento\\
+                Estável; soluções razoáveis só em situações de convecção
+                claramente dominante
+            \item Esquema híbrido (HYB): LDS se $|P|\simeq0$, UWS desprezando a
+                difusão se $|P|>>1$.\\
+                Estável; soluções razoáveis em diferentes regimes de escoamento;
+                descontinuidade da solução para $P$ coincidente com o valor
+                discriminante dos dois ramos.
+                \rule[-13.5mm]{0mm}{1mm}
         \end{itemize}
     \end{block}
-
-    % References
-    \begin{block}{Referências}
-        \vskip -0.8cm
-        \footnotesize
-        \begin{itemize}
-            \item Patankar
-            \item Versteeg \& Malalasekera
-            \item H.~Jing, C.~Li, B.~Zhou, European Conference on Fluid Dynamics
-                ECCOMAS CFD 2006
-        \end{itemize}
-        \normalsize
-        \vskip -0.8cm
-    \end{block}
-
-
 \end{column}
-
-
+  
 \end{columns}
 
 \begin{columns}[t]
 \begin{column}{\linewidth}
-\begin{exampleblock}{Análise comparativa}
-\begin{itemize}
-\item LDS
-\item UWS
-\item HYB
-\item CAS
-\end{itemize}
+\begin{exampleblock}{Esquema alternativo --- Esquema de ajuste contínuo
+    (CAS)}
+    Esquema semelhante ao LDS, mas com coeficientes de interpolação ajustados
+    em função da intensidade da convecção.
+    \strut
+
+    \begin{minipage}[c]{0.25\linewidth}
+        \begin{align*}
+            \phi^*_{i+1/2} &= f(P)\phi_i + [1-f(P)]\phi_{i+1}\\[5mm]
+            f(P) &= \frac{1}{2}\left(1-\frac{P}{\xi+|P|}\right)
+        \end{align*}
+    \end{minipage}\hfill
+    \begin{tikzpicture}[baseline={(current bounding box.center)}]
+        \begin{axis}[samples=100,
+                 domain=-3:3,
+                 width=25.cm,
+                 height=10cm,
+                 xmin=-3, xmax=3,
+                 ymin=-0.1,ymax=1.2,
+			     no markers,
+                 axis lines=left,
+                 axis y line=middle,
+                 axis x line = middle,
+                 ytick = {0.5, 1},
+                 xtick = {-2,-1,1,2},
+                 xlabel = $P$,
+                 ylabel = $f(P)$,
+                 line width=2
+                ]
+                \addplot {0.5*(1+x/(0.3+abs(x)))};
+        \end{axis}
+    \end{tikzpicture}\hfill
+    \begin{minipage}[c]{0.4\linewidth}
+        Esta escolha de coeficientes de interpolação dá mais peso aos valores
+        nos pontos nodais a montante, mas não anula completamente (como no UWS)
+        a influência dos pontos a jusante.
+
+        Sem escoamento ($v=0$, $P=0$), este esquema reduz-se ao LDS.
+    \end{minipage}
 \end{exampleblock}
 
+\begin{block}{Estudo comparativo}
+    \begin{minipage}[t]{0.6\linewidth}
+        Comparam-se soluções obtidas com os diferentes esquemas para a difusão
+        estacionária e unidimenional de calor, num fluido homogéneo com
+        densidade $\rho$ e condutividade térmica $\Gamma$, que escoa com
+        velocidade constante $v$, na ausência de fontes. Este problema tem
+        solução analítica
+        \begin{equation*}
+            \phi(x) = \phi_0 + \frac{\phi_L-\phi_0}{e^{\mu}-1}
+            \left(e^{\mu x}-1\right),\qquad \text{com }\mu=\rho v/\Gamma
+        \end{equation*}
+    \end{minipage}\hfill
+    \begin{tikzpicture}[baseline={(current bounding box.north)}]
+        \begin{axis}[samples=100,
+                 domain=0:1,
+                 width=20.cm,
+                 height=10cm,
+                 xmin=-0.02, xmax=1.1,
+                 ymin=-0.1,ymax=1.3,
+                 axis lines=left,
+                 axis y line=middle,
+                 axis x line = middle,
+                 ytick = {0.001, 1},
+                 yticklabels = {$\phi_L$, $\phi_0$},
+                 xtick = {0,0.2,0.4,0.6,0.8,1},
+                 xlabel = $x$,
+                 ylabel = $\phi(x)$,
+                 no markers,
+                 line width=2
+                ]
+                \addplot [black] {1.0 - (exp(25*x)-1)/(exp(25.0)-1)};
+        \end{axis}
+        \node at (9,4) {%
+            \begin{minipage}{2cm}
+                \small
+                \begin{align*}
+                    v&=2,5\,\text{m/s}\\
+                    \rho&=1,0\,\text{kg/m$^3$}\\
+                    \Gamma&=0,1\,\text{kg\,m$^{-1}$\,s$^{-1}$}
+                \end{align*}
+            \end{minipage}
+        };
+    \end{tikzpicture}
+    \hfill\strut
+\end{block}
+
+    % References
+%    \begin{block}{Referências}
+%        \vskip -0.8cm
+%        \footnotesize
+%        \begin{itemize}
+%            \item Patankar
+%            \item Versteeg \& Malalasekera
+%            \item H.~Jing, C.~Li, B.~Zhou, European Conference on Fluid Dynamics
+%                ECCOMAS CFD 2006
+%        \end{itemize}
+%        \normalsize
+%        \vskip -0.8cm
+%    \end{block}
 \end{column}
+\end{columns}
+\begin{columns}[t]
+    \begin{column}{0.316\linewidth}
+        \begin{exampleblock}{Resultado: soluções}
+                \centering
+            \begin{tikzpicture}
+                \small
+                \begin{axis}[samples=100,
+                         domain=0:1,
+                         width=20.cm,
+                         height=15cm,
+                         xmin=-0.02, xmax=1.1,
+                         ymin=-0.1,ymax=1.3,
+                         axis y line=middle,
+                         axis x line = middle,
+                         ytick = {0.001, 1},
+                         yticklabels = {$\phi_L$, $\phi_0$},
+                         xtick = {0.1,0.3,0.5,0.7,0.9},
+                         xlabel = $x$,
+                         ylabel = $\phi(x)$,
+                         line width=2,
+                         axis lines=center,
+                         legend style={at={(axis cs:0.03,0.03)},anchor=south west}
+                        ]
+                        \addplot [no markers] {1.0 - (exp(25*x)-1)/(exp(25.0)-1)};
+                        \addplot [only marks, mark=x, mark size=8] table [x={x}, y={lds}]{phi.dat};
+                        \addplot [only marks, mark=+, mark size=8] table [x={x}, y={uws}]{phi.dat};
+                        \addplot [only marks, mark=o, mark size=8] table [x={x}, y={hyb}]{phi.dat};
+                        \addplot [only marks, mark=square, mark size=8,blue] table [x={x}, y={cas}]{phi.dat};
+                        \legend{{},LDS,UWS,HYB,CAS};
+                \end{axis}
+            \end{tikzpicture}
+        \end{exampleblock}
+    \end{column}\hfill
+    \begin{column}{0.316\linewidth}
+        \begin{exampleblock}{Resultados: erro como função de $P$}
+            \begin{tikzpicture}
+                \small
+                \begin{axis}[%samples=100,
+                         domain=0:1,
+                         width=22.cm,
+                         height=14.25cm,
+                         xmin=0.0, xmax=45,
+                         ymin=-0.001,ymax=0.2,
+                         axis y line=middle,
+                         axis x line = middle,
+                         ytick = {0, 0.05,0.10,0.15},
+                         yticklabels = {0,{0,05},{0,10},{0,15}},
+                         xtick = {10,20,30,40},
+                         xlabel = $P$,
+                         ylabel = $\varepsilon$,
+                         axis lines=center,
+                         legend style={at={(axis cs:38,0.18)},anchor=north east}
+                        ]
+                        \addplot [only marks, mark=x, mark size=6] table [x={P}, y={lds}]{errtab.dat};
+                        \addplot [only marks, mark=+, mark size=6] table [x={P}, y={uws}]{errtab.dat};
+                        \addplot [only marks, mark=o, mark size=6] table [x={P}, y={hyb}]{errtab.dat};
+                        \addplot [only marks, mark=square, mark size=8,blue] table [x={P}, y={cas}]{errtab.dat};
+                        \legend{LDS,UWS,HYB,CAS};
+                \end{axis}
+            \end{tikzpicture}
+        \end{exampleblock}
+    \end{column}\hfill
+    \begin{column}{0.316\linewidth}
+        \begin{exampleblock}{Resultados: Taxa de convergência}
+            \begin{tikzpicture}
+                \small
+                \begin{loglogaxis}[%samples=100,
+                         %domain=0:1,
+                         width=22.cm,
+                         height=13.50cm,
+                         xmin=0.001, xmax=1,
+                         ymin=0.000005,ymax=0.5,
+                         %axis y line=left,
+                         %axis x line = middle,
+                         %ytick = {0, 0.05,0.10,0.15},
+                         %yticklabels = {0,{0,05},{0,10},{0,15}},
+                         xtick = {0.001,0.01,0.1},
+                         xlabel = $\delta x$,
+                         ylabel = $\varepsilon$,
+                         axis lines=center,
+                         legend style={at={(axis cs:0.09,0.001)},anchor=north west}
+                        ]
+                        \addplot [only marks, mark=x, mark size=6] table [x={dx}, y={lds}]{conv_rate.dat};
+                        \addplot [only marks, mark=+, mark size=6] table [x={dx}, y={uws}]{conv_rate.dat};
+                        \addplot [only marks, mark=o, mark size=6] table [x={dx}, y={hyb}]{conv_rate.dat};
+                        \addplot [only marks, mark=square, mark size=8,blue] table [x={dx}, y={cas}]{conv_rate.dat};
+                        \legend{LDS,UWS,HYB,CAS};
+                \end{loglogaxis}
+            \end{tikzpicture}
+        \end{exampleblock}
+    \end{column}
+\end{columns}
+\begin{columns}[t]
+    \begin{column}{0.488\linewidth}
+        \begin{exampleblock}{Conclusões preliminares}
+            \begin{enumerate}
+                \item
+                    O esquema proposto produz as soluções mais exactas de todos
+                    os esquemas testados, qualquer que seja o regime de
+                    escoamento ou o passo de integração
+                \item
+                    O esquema proposto apesenta uma taxa de convergência muito
+                    elevada, semelhante ao LDS (de segunda ordem em malhas
+                    homogéneas)
+            \end{enumerate}
+        \end{exampleblock}
+    \end{column}
+    \begin{column}{0.488\linewidth}
+        \begin{exampleblock}{Futuros desenvolvimentos}
+            \begin{itemize}
+                \item Como se comporta o esquema proposto em problemas que
+                    incluam a presença de fontes?
+                \item Como se comporta o esquema proposto em malhas não
+                    homogéneas?
+                \item Como se comporta o esquema proposto em problemas 2- e
+                    3-dimen\-sionais?
+            \end{itemize}
+            \strut
+        \end{exampleblock}
+    \end{column}
+\end{columns}
+\begin{columns}[t]
+    \begin{column}{\linewidth}
+        \small
+        \begin{block}{Referências}
+            \begin{itemize}
+                \item Patankar
+                \item Verteeg \& Malalasekera
+                \item H.~Jing, C.~Li, B.~Zhou, European Conference on Fluid Dynamics
+                    ECCOMAS CFD 2006
+            \end{itemize}
+        \end{block}
+    \end{column}
 \end{columns}
 \end{frame}
 

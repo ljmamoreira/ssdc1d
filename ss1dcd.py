@@ -130,6 +130,15 @@ def standardSol(n,scheme,xsi=0.5):
 
 
 
+def mkFD(physPars, mesh):
+    v, rho, gamma = physPars
+    xc, xf = mesh
+    F = np.ones_like(xf) * rho * v
+    D = np.zeros_like(xf)
+    D[1:-1] = gamma / (xc[1:]- xc[:-1])
+    D[0] = gamma / (xc[0] - xf[0])
+    D[-1] = gamma / (xf[-1] - xc[-1])
+    return (F,D)
 
 
 if __name__ == "__main__":
@@ -156,8 +165,29 @@ if __name__ == "__main__":
     xc, xf = mesh
     
     #Determination of best xsi in the velocity range [0:5]
-    xsi = best_xsi(mesh, physPars, bdrVals, srcCoeffs)
-    print "best_xsi:",xsi
+    bxsi = best_xsi(mesh, physPars, bdrVals, srcCoeffs)
+    print "best_xsi:", bxsi
+
+    #Compare solutions
+    physPars = (v, rho, gamma)
+    FD = mkFD(physPars, mesh)
+    lds = fvsolution(mesh, "lds", FD, srcCoeffs, bdrVals);
+    uws = fvsolution(mesh, "uws", FD, srcCoeffs, bdrVals)
+    hyb = fvsolution(mesh, "hyb", FD, srcCoeffs, bdrVals)
+    cas = fvsolution(mesh, "cas", FD, srcCoeffs, bdrVals, bxsi)
+    lds.compute()
+    uws.compute()
+    hyb.compute()
+    cas.compute()
+    print cas.f_ana(mesh[0])
+    with open('phi.dat','w') as pfile:
+        print (5*"{:^8s}").format("x", "lds", "uws", "hyb", "cas")
+        for x,y1,y2,y3,y4 in zip(mesh[0], lds.yfv, uws.yfv, hyb.yfv, cas.yfv):
+            line = (5*"{:8.4f}").format(x,y1,y2,y3,y4)
+            print line
+            pfile.write(line+'\n')
+
+
 
     #Compare errors
     with open('errtab.dat','w') as ofile:
@@ -172,11 +202,11 @@ if __name__ == "__main__":
             D[-1] = gamma / (xf[-1] - xc[-1])
             FD = (F,D)
             for scheme in ("lds", "uws", "hyb", "cas"):
-                FVsys = fvsolution(mesh,scheme,FD,srcCoeffs, bdrVals, xsi)
+                FVsys = fvsolution(mesh,scheme,FD,srcCoeffs, bdrVals, bxsi)
                 err = FVsys.error()
                 line += "{:6.4e}  ".format(err)
             ofile.write(line+'\n')
             print line
 
     v = 2.5; rho = 1.0; gamma = 0.1; physPars = (v, rho, gamma)
-    convergence_rate(physPars, bdrVals, xsi)
+    convergence_rate(physPars, bdrVals, bxsi)
