@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuges]{babel}
+\usepackage{pgfplots,amsmath}
+\pgfplotsset{compat=1.8}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+             /pgf/number format/.cd, use comma,
+             samples=100,
+             domain=-10:10,
+             width=6.cm,
+             height=4cm,
+             xmin=-10, xmax=10,
+             ymin=0.0,ymax=1.2,
+             axis y line=middle,
+             axis x line = middle,
+             ytick = {0.5, 1.0},
+             xtick = {-8,-4.0,0,4,8},
+             xlabel = $P/\xi$,
+             ylabel = $f(P)$,
+             axis lines=center,
+             %legend style={at={(axis cs:0.03,0.03)},anchor=south west}
+            ]
+            \addplot [no markers] {0.5*(1+x/(1+abs(x)))};
+            %\node at (axis cs:7,0.5) {\fbox{$\xi=1$}};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
+

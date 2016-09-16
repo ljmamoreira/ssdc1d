@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:ns0="http://www.iki.fi/pav/software/textext/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="107.77233mm"
+   height="10.88925mm"
+   viewBox="0 0 381.87047 38.583956"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="f10.svg"
+   inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/figs/f10.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="151.51383"
+     inkscape:cy="6.4752466"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="708"
+     inkscape:window-x="0"
+     inkscape:window-y="1080"
+     inkscape:window-maximized="1"
+     inkscape:snap-text-baseline="true"
+     fit-margin-top="0.5"
+     fit-margin-left="0.5"
+     fit-margin-right="0.5"
+     fit-margin-bottom="0.5" />
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4198"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect4194"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3378"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3374"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect3370"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3366"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect3362"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3358"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect3354"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3350"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect3346"
+       effect="spiro" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3342"
+       is_visible="true" />
+    <inkscape:path-effect
+       is_visible="true"
+       id="path-effect3338"
+       effect="spiro" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(-46.434051,-68.447692)">
+    <rect
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       y="70.493935"
+       x="213.01591"
+       height="22.22336"
+       width="50.255096"
+       id="rect4273"
+       style="opacity:1;fill:#dedede;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 65.125001,70.219346 0,22.857143"
+       inkscape:path-effect="#path-effect3338"
+       id="path3336"
+       d="m 65.125001,70.219346 0,22.857143"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 410.87746,70.219346 0,22.857143"
+       id="path3340"
+       inkscape:path-effect="#path-effect3342"
+       inkscape:original-d="m 410.87746,70.219346 0,22.857143"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 65,81.647918 345.71429,0"
+       inkscape:path-effect="#path-effect3346"
+       id="path3344"
+       d="m 65,81.647918 345.71429,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 117.125,70.219346 0,22.857143"
+       id="path3348"
+       inkscape:path-effect="#path-effect3350"
+       inkscape:original-d="m 117.125,70.219346 0,22.857143"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 161.125,70.219346 0,22.857143"
+       inkscape:path-effect="#path-effect3354"
+       id="path3352"
+       d="m 161.125,70.219346 0,22.857143"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 212.45833,70.219346 0,22.857143"
+       id="path3356"
+       inkscape:path-effect="#path-effect3358"
+       inkscape:original-d="m 212.45833,70.219346 0,22.857143"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 263.79165,70.219346 0,22.857143"
+       inkscape:path-effect="#path-effect3362"
+       id="path3360"
+       d="m 263.79165,70.219346 0,22.857143"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 363.125,70.219346 0,22.857143"
+       inkscape:path-effect="#path-effect3370"
+       id="path3368"
+       d="m 363.125,70.219346 0,22.857143"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 315.125,70.219346 0,22.857143"
+       id="path3372"
+       inkscape:path-effect="#path-effect3374"
+       inkscape:original-d="m 315.125,70.219346 0,22.857143"
+       inkscape:connector-curvature="0" />
+    <circle
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       r="0.74987525"
+       cy="81.647919"
+       cx="85.202286"
+       id="path3380"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <circle
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="circle4182"
+       cx="187.0475"
+       cy="81.647919"
+       r="0.74987525" />
+    <circle
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       r="0.74987525"
+       cy="81.647919"
+       cx="241.3432"
+       id="circle4184"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <circle
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="circle4186"
+       cx="286.80008"
+       cy="81.647919"
+       r="0.74987525" />
+    <circle
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       r="0.74987525"
+       cy="81.647919"
+       cx="384.80008"
+       id="circle4190"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       transform="matrix(0.87345135,0.48691143,-0.48691143,0.87345135,77.240426,-193.1796)"
+       id="g4202">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4200"
+         width="3.0304577"
+         height="9.4701796"
+         x="360.34036"
+         y="108.18524" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 359.86684,108.12211 0,9.59645"
+         id="path4192"
+         inkscape:path-effect="#path-effect4194"
+         inkscape:original-d="m 359.86684,108.12211 0,9.59645"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:original-d="m 363.86684,108.12211 0,9.59645"
+         inkscape:path-effect="#path-effect4198"
+         id="path4196"
+         d="m 363.86684,108.12211 0,9.59645"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       id="g4207"
+       transform="matrix(0.87345135,0.48691143,-0.48691143,0.87345135,-122.75957,-193.1796)">
+      <rect
+         y="108.18524"
+         x="360.34036"
+         height="9.4701796"
+         width="3.0304577"
+         id="rect4209"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:original-d="m 359.86684,108.12211 0,9.59645"
+         inkscape:path-effect="#path-effect4194"
+         id="path4211"
+         d="m 359.86684,108.12211 0,9.59645"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 363.86684,108.12211 0,9.59645"
+         id="path4213"
+         inkscape:path-effect="#path-effect4198"
+         inkscape:original-d="m 363.86684,108.12211 0,9.59645"
+         inkscape:connector-curvature="0" />
+    </g>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       sodipodi:linespacing="125%"
+       id="text4215"
+       y="96.757889"
+       x="236.25073"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="96.757889"
+         x="236.25073"
+         id="tspan4217"
+         sodipodi:role="line">P</tspan></text>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="178.89015"
+       y="96.757889"
+       id="text4219"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4221"
+         x="178.89015"
+         y="96.757889">W</tspan></text>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       sodipodi:linespacing="125%"
+       id="text4223"
+       y="96.757889"
+       x="281.60019"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="96.757889"
+         x="281.60019"
+         id="tspan4225"
+         sodipodi:role="line">E</tspan></text>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       sodipodi:linespacing="125%"
+       id="text4227"
+       y="103.84927"
+       x="207.11775"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="103.84927"
+         x="207.11775"
+         id="tspan4229"
+         sodipodi:role="line">w</tspan></text>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       sodipodi:linespacing="125%"
+       id="text4231"
+       y="103.84927"
+       x="260.14481"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="103.84927"
+         x="260.14481"
+         id="tspan4233"
+         sodipodi:role="line">e</tspan></text>
+    <text
+       inkscape:export-ydpi="150"
+       inkscape:export-xdpi="150"
+       inkscape:export-filename="/home/amoreira/CloudPT/fis/cfd/DCSchemes/fisica2016/paper/f10.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:csti10;-inkscape-font-specification:'csti10, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="417.46158"
+       y="83.900749"
+       id="text4183"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4185"
+         x="417.46158"
+         y="83.900749" /></text>
+    <g
+       ns0:preamble="/home/amoreira/aulas/coursera/preamble.tex"
+       ns0:text="$\\phi_0$\n"
+       word-spacing="normal"
+       letter-spacing="normal"
+       font-size-adjust="none"
+       font-stretch="normal"
+       font-weight="normal"
+       font-variant="normal"
+       font-style="normal"
+       stroke-miterlimit="10.433"
+       xml:space="preserve"
+       transform="matrix(1,0,0,-1,-175.71429,791.20292)"
+       id="content"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:normal;word-spacing:normal;text-anchor:start;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.43299961;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"><path
+         id="path4243"
+         d="m 227.78,713.78 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0.01 0.01,0 0,0.01 0,0.01 0,0 0,0.01 0,0 0,0.01 0.01,0.02 0,0 0,0.01 0,0 0,0.01 0,0 0.01,0.01 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0 c 0,0.01 0,0.1 -0.12,0.1 -0.1,0 -0.11,-0.03 -0.15,-0.2 l -0.58,-2.29 c -1.58,-0.05 -3.04,-1.37 -3.04,-2.73 0,-0.94 0.7,-1.72 1.91,-1.79 l 0.05,0.21 c -0.6,0.03 -1.31,0.38 -1.31,1.37 0,1.2 0.85,2.59 2.33,2.72 l -1.02,-4.09 -0.05,-0.21 c -0.08,-0.31 -0.15,-0.63 -0.23,-0.94 -0.12,-0.47 -0.22,-0.84 -0.22,-0.87 0,-0.1 0.07,-0.11 0.12,-0.11 0.05,0 0.07,0.01 0.1,0.04 0.02,0.02 0.08,0.26 0.11,0.4 l 0.38,1.48 0.05,0.21 1.02,4.09 c 0.76,-0.04 1.33,-0.5 1.33,-1.37 0,-1.18 -0.86,-2.6 -2.35,-2.72 l -0.05,-0.21 c 1.6,0.04 3.04,1.39 3.04,2.72 0,0.78 -0.52,1.7 -1.91,1.8 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /><path
+         id="path4245"
+         d="m 232.96,707.85 0,0.14 0,0.14 -0.01,0.13 -0.01,0.12 -0.01,0.13 -0.01,0.12 -0.02,0.11 -0.02,0.11 -0.03,0.11 -0.03,0.11 -0.03,0.1 -0.04,0.1 -0.04,0.1 -0.05,0.09 -0.05,0.1 -0.03,0.04 -0.03,0.05 c -0.21,0.32 -0.65,0.6 -1.2,0.6 l 0,-0.2 c 0.37,0 0.73,-0.23 0.86,-0.63 0.11,-0.38 0.12,-0.88 0.12,-1.48 0,-0.52 0,-1.03 -0.09,-1.47 -0.14,-0.63 -0.62,-0.78 -0.89,-0.78 l 0,0 c -0.32,0 -0.75,0.18 -0.89,0.76 -0.1,0.4 -0.1,0.97 -0.1,1.49 0,0.51 0,1.04 0.11,1.42 0.15,0.55 0.59,0.69 0.88,0.69 l 0,0.2 c -1.62,0 -1.62,-1.9 -1.62,-2.4 0,-0.5 0,-2.36 1.62,-2.36 1.61,0 1.61,1.86 1.61,2.36 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /></g>    <g
+       id="g4365"
+       transform="matrix(1,0,0,-1,192.14285,791.20292)"
+       xml:space="preserve"
+       stroke-miterlimit="10.433"
+       font-style="normal"
+       font-variant="normal"
+       font-weight="normal"
+       font-stretch="normal"
+       font-size-adjust="none"
+       letter-spacing="normal"
+       word-spacing="normal"
+       ns0:text="$\\phi_L$\n\n"
+       ns0:preamble="/home/amoreira/aulas/coursera/preamble.tex"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:normal;word-spacing:normal;text-anchor:start;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.43299961;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 227.78,713.78 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0.01 0.01,0 0,0.01 0,0.01 0,0 0,0.01 0,0 0,0.01 0.01,0.02 0,0 0,0.01 0,0 0,0.01 0,0 0.01,0.01 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0 0,0.01 0,0 0,0 0,0 0,0 0,0 c 0,0.01 0,0.1 -0.12,0.1 -0.1,0 -0.11,-0.03 -0.15,-0.2 l -0.58,-2.29 c -1.58,-0.05 -3.04,-1.37 -3.04,-2.73 0,-0.94 0.7,-1.72 1.91,-1.79 l 0.05,0.21 c -0.6,0.03 -1.31,0.38 -1.31,1.37 0,1.2 0.85,2.59 2.33,2.72 l -1.02,-4.09 -0.05,-0.21 c -0.08,-0.31 -0.15,-0.63 -0.23,-0.94 -0.12,-0.47 -0.22,-0.84 -0.22,-0.87 0,-0.1 0.07,-0.11 0.12,-0.11 0.05,0 0.07,0.01 0.1,0.04 0.02,0.02 0.08,0.26 0.11,0.4 l 0.38,1.48 0.05,0.21 1.02,4.09 c 0.76,-0.04 1.33,-0.5 1.33,-1.37 0,-1.18 -0.86,-2.6 -2.35,-2.72 l -0.05,-0.21 c 1.6,0.04 3.04,1.39 3.04,2.72 0,0.78 -0.52,1.7 -1.91,1.8 z"
+         id="path4367" /><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 232.24,709.81 0,0.02 0.01,0.02 0,0.03 0.01,0.02 0.01,0.01 0,0.02 0.01,0.02 0.01,0.02 0,0.01 0.01,0.01 0.01,0.02 0.02,0.01 0.01,0.01 0.01,0.01 0.02,0.01 0.01,0.01 0.02,0.01 0.02,0.01 0.02,0.01 0.03,0 0.01,0.01 0.01,0 0.02,0 0.01,0.01 0.02,0 0.01,0 0.02,0 0.02,0.01 0.01,0 0.02,0 0.02,0 0.02,0 0.02,0 0.02,0 0.03,0.01 0.02,0 0.02,0 0.03,0 0.02,0 0.03,0 0.03,0 0.02,0 0.03,0 0.03,0 c 0.22,0 0.29,0 0.29,0.15 0,0.01 -0.01,0.1 -0.12,0.1 -0.16,0 -0.35,-0.01 -0.52,-0.02 -0.17,-0.01 -0.38,-0.01 -0.55,-0.01 -0.15,0 -0.34,0.01 -0.48,0.01 -0.15,0 -0.32,0.02 -0.46,0.02 -0.04,0 -0.14,0 -0.14,-0.15 0,-0.1 0.08,-0.1 0.22,-0.1 0.01,0 0.14,0 0.26,-0.01 0.15,-0.02 0.16,-0.03 0.16,-0.1 0,-0.01 0,-0.05 -0.02,-0.15 l -0.93,-3.7 c -0.06,-0.23 -0.08,-0.29 -0.61,-0.29 -0.12,0 -0.21,0 -0.21,-0.15 0,-0.1 0.08,-0.1 0.21,-0.1 l 3.5,0 c 0.18,0 0.18,0.01 0.24,0.14 0.07,0.19 0.59,1.54 0.59,1.59 0,0.02 -0.01,0.1 -0.12,0.1 -0.08,0 -0.1,-0.04 -0.14,-0.15 -0.26,-0.66 -0.57,-1.43 -1.84,-1.43 l -0.79,0 c -0.22,0 -0.22,0.01 -0.22,0.07 0,0.01 0,0.04 0.02,0.15 z"
+         id="path4369" /></g>    <g
+       ns0:preamble="/home/amoreira/aulas/coursera/preamble.tex"
+       ns0:text="$x=0$\n"
+       word-spacing="normal"
+       letter-spacing="normal"
+       font-size-adjust="none"
+       font-stretch="normal"
+       font-weight="normal"
+       font-variant="normal"
+       font-style="normal"
+       stroke-miterlimit="10.433"
+       xml:space="preserve"
+       transform="matrix(1,0,0,-1,-170.23,812.13999)"
+       id="g4487"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:normal;word-spacing:normal;text-anchor:start;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.43299961;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"><path
+         id="path4489"
+         d="m 226.76,710.12 0,0.03 0.01,0.03 0.01,0.03 0.01,0.04 0.01,0.04 0.01,0.04 0.01,0.04 0.02,0.05 0.01,0.04 0.02,0.05 0.02,0.05 0.02,0.05 0.02,0.05 0.03,0.05 0.02,0.05 0.03,0.05 0.03,0.05 0.03,0.04 0.03,0.05 0.04,0.04 0.04,0.05 0.04,0.04 0.04,0.04 0.04,0.03 0.05,0.03 0.05,0.03 0.02,0.01 0.03,0.02 0.02,0.01 0.03,0.01 0.03,0.01 0.03,0 0.03,0.01 0.02,0.01 0.04,0 0.03,0 0.03,0.01 0.03,0 c 0.05,0 0.29,0 0.5,-0.13 -0.28,-0.05 -0.48,-0.3 -0.48,-0.54 0,-0.16 0.11,-0.35 0.38,-0.35 0.22,0 0.54,0.18 0.54,0.58 0,0.52 -0.59,0.66 -0.93,0.66 -0.58,0 -0.93,-0.53 -1.04,-0.76 -0.25,0.66 -0.79,0.76 -1.08,0.76 -1.03,0 -1.6,-1.29 -1.6,-1.53 0,-0.1 0.1,-0.1 0.12,-0.1 0.08,0 0.11,0.02 0.13,0.11 0.34,1.05 0.99,1.3 1.33,1.3 0.19,0 0.54,-0.09 0.54,-0.67 0,-0.31 -0.17,-0.97 -0.54,-2.36 -0.16,-0.62 -0.51,-1.04 -0.94,-1.04 -0.06,0 -0.29,0 -0.5,0.13 0.25,0.05 0.47,0.26 0.47,0.54 0,0.27 -0.22,0.35 -0.37,0.35 -0.3,0 -0.55,-0.26 -0.55,-0.58 0,-0.46 0.5,-0.65 0.94,-0.65 0.65,0 1.01,0.69 1.04,0.75 0.12,-0.37 0.48,-0.75 1.07,-0.75 1.03,0 1.6,1.28 1.6,1.53 0,0.1 -0.09,0.1 -0.12,0.1 -0.09,0 -0.11,-0.05 -0.13,-0.11 -0.33,-1.07 -1.01,-1.31 -1.33,-1.31 -0.38,0 -0.54,0.32 -0.54,0.66 0,0.22 0.06,0.44 0.17,0.87 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /><path
+         id="path4491"
+         d="m 238.73,710.37 0.03,0 0.03,0 0.02,0 0.02,0.01 0.01,0 0.02,0 0.01,0 0.02,0 0.01,0 0.01,0.01 0.02,0 0.01,0 0.01,0.01 0.01,0 0.02,0.01 0.01,0 0.01,0.01 0.01,0.01 0.01,0.01 0.01,0.01 0,0.01 0.01,0 0,0.01 0,0 0.01,0.01 0,0.01 0,0 0.01,0.01 0,0.01 0,0 0,0.01 0,0.01 0,0.01 0,0.01 0.01,0 0,0.01 0,0.01 c 0,0.2 -0.19,0.2 -0.33,0.2 l -5.96,0 c -0.14,0 -0.33,0 -0.33,-0.2 0,-0.2 0.19,-0.2 0.34,-0.2 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /><path
+         id="path4493"
+         d="m 238.74,708.45 0.01,0 0.01,0 0.03,0 0.03,0 0.01,0 0.02,0 0.01,0 0.02,0 0.01,0 0.01,0.01 0.02,0 0.01,0 0.01,0.01 0.01,0 0.02,0.01 0.01,0 0.01,0.01 0.01,0 0.01,0.01 0.01,0.01 0.01,0.01 0,0 0,0.01 0.01,0.01 0,0 0,0.01 0.01,0 0,0.01 0,0.01 0.01,0 0,0.01 0,0.01 0,0 0,0.01 0,0.01 0,0.01 0.01,0.01 0,0.01 0,0.01 c 0,0.19 -0.19,0.19 -0.34,0.19 l -5.94,0 c -0.15,0 -0.34,0 -0.34,-0.19 0,-0.2 0.19,-0.2 0.33,-0.2 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /><path
+         id="path4495"
+         d="m 246.99,710.3 0,0.15 0,0.15 -0.01,0.15 -0.01,0.15 0,0.15 -0.02,0.14 -0.01,0.15 -0.02,0.15 -0.02,0.14 -0.03,0.15 -0.03,0.14 -0.04,0.15 -0.04,0.14 -0.05,0.14 -0.06,0.14 -0.03,0.07 -0.03,0.07 c -0.46,0.95 -1.27,1.11 -1.69,1.11 -0.6,0 -1.32,-0.26 -1.73,-1.18 -0.32,-0.69 -0.37,-1.46 -0.37,-2.26 0,-0.74 0.04,-1.64 0.45,-2.39 0.43,-0.81 1.15,-1 1.64,-1 l 0,0.21 c -0.39,0 -0.98,0.25 -1.15,1.21 -0.12,0.59 -0.12,1.51 -0.12,2.09 0,0.64 0,1.29 0.09,1.83 0.18,1.18 0.93,1.27 1.18,1.27 0.33,0 0.98,-0.18 1.17,-1.16 0.1,-0.56 0.1,-1.31 0.1,-1.94 0,-0.74 0,-1.42 -0.11,-2.05 -0.15,-0.95 -0.71,-1.25 -1.16,-1.25 l 0,0 0,-0.21 c 0.54,0 1.29,0.2 1.73,1.15 0.32,0.68 0.37,1.46 0.37,2.24 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke-width:0" /></g>    <g
+       id="g4633"
+       transform="matrix(1,0,0,-1,174.61246,812.27999)"
+       xml:space="preserve"
+       stroke-miterlimit="10.433"
+       font-style="normal"
+       font-variant="normal"
+       font-weight="normal"
+       font-stretch="normal"
+       font-size-adjust="none"
+       letter-spacing="normal"
+       word-spacing="normal"
+       ns0:text="$x=L$\n\n"
+       ns0:preamble="/home/amoreira/aulas/coursera/preamble.tex"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:normal;word-spacing:normal;text-anchor:start;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.43299961;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 226.76,710.12 0,0.03 0.01,0.03 0.01,0.03 0.01,0.04 0.01,0.04 0.01,0.04 0.01,0.04 0.02,0.05 0.01,0.04 0.02,0.05 0.02,0.05 0.02,0.05 0.02,0.05 0.03,0.05 0.02,0.05 0.03,0.05 0.03,0.05 0.03,0.04 0.03,0.05 0.04,0.04 0.04,0.05 0.04,0.04 0.04,0.04 0.04,0.03 0.05,0.03 0.05,0.03 0.02,0.01 0.03,0.02 0.02,0.01 0.03,0.01 0.03,0.01 0.03,0 0.03,0.01 0.02,0.01 0.04,0 0.03,0 0.03,0.01 0.03,0 c 0.05,0 0.29,0 0.5,-0.13 -0.28,-0.05 -0.48,-0.3 -0.48,-0.54 0,-0.16 0.11,-0.35 0.38,-0.35 0.22,0 0.54,0.18 0.54,0.58 0,0.52 -0.59,0.66 -0.93,0.66 -0.58,0 -0.93,-0.53 -1.04,-0.76 -0.25,0.66 -0.79,0.76 -1.08,0.76 -1.03,0 -1.6,-1.29 -1.6,-1.53 0,-0.1 0.1,-0.1 0.12,-0.1 0.08,0 0.11,0.02 0.13,0.11 0.34,1.05 0.99,1.3 1.33,1.3 0.19,0 0.54,-0.09 0.54,-0.67 0,-0.31 -0.17,-0.97 -0.54,-2.36 -0.16,-0.62 -0.51,-1.04 -0.94,-1.04 -0.06,0 -0.29,0 -0.5,0.13 0.25,0.05 0.47,0.26 0.47,0.54 0,0.27 -0.22,0.35 -0.37,0.35 -0.3,0 -0.55,-0.26 -0.55,-0.58 0,-0.46 0.5,-0.65 0.94,-0.65 0.65,0 1.01,0.69 1.04,0.75 0.12,-0.37 0.48,-0.75 1.07,-0.75 1.03,0 1.6,1.28 1.6,1.53 0,0.1 -0.09,0.1 -0.12,0.1 -0.09,0 -0.11,-0.05 -0.13,-0.11 -0.33,-1.07 -1.01,-1.31 -1.33,-1.31 -0.38,0 -0.54,0.32 -0.54,0.66 0,0.22 0.06,0.44 0.17,0.87 z"
+         id="path4635" /><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 238.73,710.37 0.03,0 0.03,0 0.02,0 0.02,0.01 0.01,0 0.02,0 0.01,0 0.02,0 0.01,0 0.01,0.01 0.02,0 0.01,0 0.01,0.01 0.01,0 0.02,0.01 0.01,0 0.01,0.01 0.01,0.01 0.01,0.01 0.01,0.01 0,0.01 0.01,0 0,0.01 0,0 0.01,0.01 0,0.01 0,0 0.01,0.01 0,0.01 0,0 0,0.01 0,0.01 0,0.01 0,0.01 0.01,0 0,0.01 0,0.01 c 0,0.2 -0.19,0.2 -0.33,0.2 l -5.96,0 c -0.14,0 -0.33,0 -0.33,-0.2 0,-0.2 0.19,-0.2 0.34,-0.2 z"
+         id="path4637" /><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 238.74,708.45 0.01,0 0.01,0 0.03,0 0.03,0 0.01,0 0.02,0 0.01,0 0.02,0 0.01,0 0.01,0.01 0.02,0 0.01,0 0.01,0.01 0.01,0 0.02,0.01 0.01,0 0.01,0.01 0.01,0 0.01,0.01 0.01,0.01 0.01,0.01 0,0 0,0.01 0.01,0.01 0,0 0,0.01 0.01,0 0,0.01 0,0.01 0.01,0 0,0.01 0,0.01 0,0 0,0.01 0,0.01 0,0.01 0.01,0.01 0,0.01 0,0.01 c 0,0.19 -0.19,0.19 -0.34,0.19 l -5.94,0 c -0.15,0 -0.34,0 -0.34,-0.19 0,-0.2 0.19,-0.2 0.33,-0.2 z"
+         id="path4639" /><path
+         style="fill:#000000;stroke-width:0"
+         inkscape:connector-curvature="0"
+         d="m 246.13,713.14 0.01,0.03 0.01,0.03 0,0.03 0.01,0.03 0.01,0.03 0.01,0.02 0.01,0.03 0.01,0.02 0.01,0.02 0.02,0.02 0.01,0.02 0.02,0.02 0.01,0.02 0.02,0.01 0.03,0.02 0.02,0.01 0.03,0.02 0.03,0.01 0.03,0.01 0.03,0.01 0.02,0 0.02,0.01 0.02,0 0.02,0.01 0.03,0 0.02,0 0.02,0.01 0.03,0 0.02,0 0.03,0 0.03,0.01 0.03,0 0.03,0 0.03,0 0.03,0.01 0.03,0 0.04,0 0.03,0 0.04,0 0.04,0 0.04,0 0.04,0 0.04,0 0.04,0 c 0.3,0 0.38,0 0.38,0.19 0,0.12 -0.11,0.12 -0.16,0.12 -0.33,0 -1.14,-0.03 -1.47,-0.03 -0.3,0 -1.02,0.03 -1.32,0.03 -0.07,0 -0.19,0 -0.19,-0.2 0,-0.11 0.09,-0.11 0.28,-0.11 0.02,0 0.21,0 0.37,-0.02 0.18,-0.02 0.27,-0.03 0.27,-0.16 0,-0.04 -0.01,-0.07 -0.04,-0.19 l -1.33,-5.33 c -0.1,-0.39 -0.12,-0.47 -0.9,-0.47 -0.17,0 -0.27,0 -0.27,-0.2 0,-0.11 0.09,-0.11 0.27,-0.11 l 4.6,0 c 0.24,0 0.25,0 0.31,0.17 l 0.79,2.15 c 0.04,0.11 0.04,0.13 0.04,0.14 0,0.04 -0.03,0.11 -0.12,0.11 -0.09,0 -0.1,-0.05 -0.17,-0.21 -0.34,-0.91 -0.78,-2.05 -2.5,-2.05 l -0.93,0 c -0.14,0 -0.16,0 -0.22,0.01 -0.1,0.01 -0.13,0.02 -0.13,0.1 0,0.03 0,0.05 0.05,0.23 z"
+         id="path4641" /></g>  </g>
+</svg>

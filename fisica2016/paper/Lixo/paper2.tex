@@ -1,0 +1,216 @@
+
+\documentclass[11pt,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage[english,portuges]{babel}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+
+
+\begin{document}
+
+%*********************************************************************** TITULO
+
+\section*{Esquema de interpolação alternativo para a reso\-lução numérica de
+problemas de difusão com convecção usando o método dos volumes finitos}
+
+\vspace{10pt}
+
+
+%************************************************************************* AUTORES
+Luis J.M. Amoreira$^{1}$%, Nome Sobrenome$^{1,2}$, Nome Sobrenome$^{1,2}$
+
+\vspace{10pt}
+
+
+%************************************************************************** MORADA
+
+{
+\center
+
+    \footnotesize
+
+$^{1}$ Departamento de Física, Univeridade da Beira Interior, Covilhã,
+Portugal\\
+E-mail: amoreira@ubi.pt
+%
+%\vspace{3pt}
+%
+%$^{2}$ Endereço 2, Portugal \\
+%Email:  email2@email.pt
+%
+%\vspace{3pt}
+%
+%$^{3}$ Endereço 1, Portugal
+
+}
+
+\vspace{25pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESUMO
+
+
+{\setlength{\parindent}{30pt}%
+
+\small%
+\section*{Resumo}
+\smallskip
+%%%%%%%%%%%%%%%%
+%Corpo do resumo (aprox. 200 palavras)
+Neste trabalho é proposto um esquema de discretização alternativo para a
+resolução de problemas de difusão com convecção baseado no esquema de diferenças
+centrais mas com coeficientes de interpolação que dependem da velocidade
+convectiva.
+
+É feita uma análise comparativa do esquema proposto com esquemas tradicionais
+(diferenças centrais, \emph{upwind}, híbrido), em termos da estabilidade, da
+exatidão e da taxa de convergência. O problema usado para a comparação é o da
+difusão estacionária unidimensional sem fontes, num fluido incompressível em
+escoamento com velocidade constante, para o qual existem soluções analíticas.
+
+Verifica-se que o esquema proposto é estável mesmo em problemas com convecção
+intensa e que produz, em geral, resultados mais aproximados da solução analítica
+dos que os obtidos com os restantes esquemas considerados. Como o esquema de
+difrerenças centrais, o esquema proposto é de segunda ordem em malhas homogéneas
+centradas.
+
+\vspace{15pt}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    SECTIONS  %%%%%
+\section{Introdução}
+%Corpo de texto regular, com referencias do estilo [1] e [2, 3]. as referências
+%devem ser introduzidas manualmente. O estilo das referências é definido pelos
+%editores.
+Na resolução numérica de equações de conservação como as que normalmente surgem
+em problemas de dinâmica de fluidos usando o método dos volumes finitos,
+define-se uma partição do domínio de integração com um conjunto de subdomínios
+finitos chamados \emph{volumes de controle} (VC) e integram-se as equações
+diferenciais a resolver em cada um desses subdomínios. Resulta deste
+procedimento um sistema de equações algébricas que relacionam os valores dos
+fluxos característicos do problema através das fronteiras dos vários VC. A
+resolução deste sistema de equações algébricas produz os valores aproximados dos
+campos a determinar nos pontos característicos de cada VC (frequentemente,
+tomam-se os seus centros geométricos).  Este procedimento envolve
+necessariamente a escolha de formas concretas de relacionar os fluxos nas faces
+dos VC com os valores dos campos nos pontos da malha de discretização. Essas
+formas concretas definem o que se chama um \emph{esquema de discretização.}
+
+O esquema de discretização mais simples e óbvio é o esquema de diferenças
+centrais (CDS) [REFS], em que os valores dos campos nas faces dos VC são
+estimados por interpolação linear a partir dos valores que tomam nos dois pontos
+da malha de cada VC que partilham cada face e os seus gradientes aproximados
+pela fórmula de derivação central. Este esquema é de segunda ordem quando se
+usam malhas uniformes e centradas, o que é notável, dada a sua simplicidade. No
+entanto, em problemas envolvendo difusão e convecção, produz soluções instáveis.
+Isto ocorre porque, na estimativa do valor dos campos nas faces dos VC, se dá a
+mesma importância aos pontos de malha dos dois VC contíguos.  Mas parece
+razoável supor que a convecção do meio material ``arraste'' parcialmente os
+valores dos campos ao longo do sentido do escoamento e que, assim sendo, o
+procedimento de interpolação deveria valorizar o valor do campo no VC ``a
+montante'' no escoamento e desvaorizar correspondentemente o do VC ``a
+jusante''.
+
+O esquema upwind (UWS) [REFS] incorpora esta sugestão de forma radical: como
+valor do campo a determinar na face entre dois volumes de controle contíguos,
+assume o do VC a montante, sem tomar em linha de conta o do outro VC. Este
+esquema já não apresenta os problemas de estabilidade do CDS, mas apresenta
+soluções menos exatas e o seu erro é apenas de primeira ordem no passo da
+discretização. Como deve ser expectável, estes problemas manifestam-se de forma
+especialmente intensa nos casos em que o escoamento do meio material é lento, ou
+seja, em que o transporte é dominado pela difusão. Ora, é nesse regime que o
+esquema de difrerenças centrais apresenta bons resultados.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% TABELA
+\begin{table}[!h]
+\caption{Legenda da tabela.}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURA
+\begin{figure}[!h]
+\centering
+%\includegraphics[scale=0.95]{fig_1.pdf}
+\caption{Legenda da figura.}
+\end{figure}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    SECTION  %%%%%
+\section{Conclusões}
+
+\begin{itemize}
+
+\item Conclusão 1
+
+\item Conclusão 2
+
+
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%                 AKNOWLEDGMENTS & BIBLIOGRAPHY
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\footnotesize%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    AGRADECIMENTOS  %%%%%
+%\section*{Agradecimentos}
+% Text
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    REFERÊNCIAS  %%%%%
+\section*{Referências}
+\vspace{5pt}
+
+\begin{enumerate}[label={[\arabic*]}]
+
+\item	Laugksch R., Scientific Literacy: A Conceptual Overview Science Education, 84, 71-94, 2000.
+
+\item	Driver, R., Young people's images of science, Open University Press (Buckingham and Bristol, PA) 1996.
+
+\item	Lopes J.B., Pinto J., Silva, A. Situação formativa: um instrumento de gestão do currículo capaz de
+promover literacia científica. Enseñanza de las Ciencias, Número Extra VIII Congreso Internacional sobre
+Investigación en Didáctica de las Ciencias, Barcelona, pp. 1624-1629 2009.
+
+
+
+\end{enumerate}
+
+}
+
+
+\end{document}

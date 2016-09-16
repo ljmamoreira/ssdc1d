@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuges]{babel}
+\usepackage{pgfplots,amsmath}
+\pgfplotsset{compat=1.8}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+             /pgf/number format/.cd, use comma,
+             domain=0:1,
+             width=7.5cm,
+             height=5.0cm,
+             xmin=0.0, xmax=43,
+             ymin=-0.001,ymax=0.2,
+             axis y line=middle,
+             axis x line = middle,
+             ytick = {0, 0.05,0.10,0.15},
+             yticklabels = {0,{0,05},{0,10},{0,15}},
+             xtick = {10,20,30,40},
+             xticklabels = {2,4,6,8},
+             xlabel = $P$,
+             ylabel = $\varepsilon$,
+             axis lines=center,
+             legend style={at={(axis cs:42,0.2)},anchor=north east}
+            ]
+        \addplot [only marks, mark=x] table [x={P}, y={lds}]{errtab.dat};
+        \addplot [only marks, mark=+] table [x={P}, y={uws}]{errtab.dat};
+        \addplot [only marks, mark=o] table [x={P}, y={hyb}]{errtab.dat};
+        \addplot [only marks, mark=square,blue] table [x={P}, y={cas}]{errtab.dat};
+        \legend{CDS,UWS,HDS,CAS};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
+

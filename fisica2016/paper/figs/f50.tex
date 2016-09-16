@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuges]{babel}
+\usepackage{pgfplots,amsmath}
+\pgfplotsset{compat=1.8}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+         /pgf/number format/.cd, use comma,
+         width=7.5cm, height=6cm,
+         xmode=log,ymode=log,
+         axis y line=left,
+         axis x line=left,
+         xmin=0.002,xmax=0.30,
+         ymin=5e-6,
+         xlabel = $\delta x/L$,
+         ylabel = $\varepsilon$,
+         every axis x label/.style={ at={(ticklabel* cs:0.92)}, below=1.0mm},
+         every axis y label/.style={at={(current axis.north west)},left=2mm},
+         legend style={at={(axis cs:0.25,0.002)},anchor=north east}
+            ]
+        \addplot [only marks, mark=x] table [x={dx}, y={lds}]{conv_rate.dat};
+        \addplot [only marks, mark=+] table [x={dx}, y={uws}]{conv_rate.dat};
+        \addplot [only marks, mark=o] table [x={dx}, y={hds}]{conv_rate.dat};
+        \addplot [only marks, mark=square,blue] table [x={dx}, y={cas}]{conv_rate.dat};
+        \legend{CDS,UWS,HDS,CAS};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
+

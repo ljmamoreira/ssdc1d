@@ -92,7 +92,7 @@ def best_xsi(mesh, physPars, bdrVals, srcCoeffs):
 def convergence_rate(physPars, bdrVals, xsi):
     v, rho, gamma = physPars
     with open("conv_rate.dat", "w") as erfile:
-        for n in [5, 11, 21, 41, 81, 161, 321]:
+        for n in [4,5,7,9, 11,15, 21, 41,81]:
             dx = 1.0 / n
             mesh = meshmaker.ucmesh(n, 0.0, 1.0)
             xc, xf = mesh
@@ -154,6 +154,8 @@ if __name__ == "__main__":
         var,val = (x.strip() for x in assignment.split("="))
         locals()[var] = type(locals()[var])(val)
 
+    print "Physical Pars:v, rho, gamma:",v,rho,gamma
+    print "Boundary conds (W, E):",phib_W, phib_E
     physPars = (v, rho, gamma)
     bdrVals = (phib_W, phib_E)
 

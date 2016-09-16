@@ -17,8 +17,8 @@
 % document properties
 \title{\LARGE Esquema de interpolação alternativo para problemas de difusão com
 convecção}
-\author{Luís J.M. Amoreira}
-\institute{\ }
+\author{Luís J.M. Amoreira (amoreira@ubi.pt)}
+\institute{Dep. Física, UBI}
 
 %block -> blue background title
 %exampleblock -> green background title
@@ -39,8 +39,8 @@ convecção}
     \begin{block}{Introdução --- Esquemas de interpolação}
         Nas aplicações do método dos volumes finitos, exprimem-se os valores do
         campo a determinar nas faces dos volumes de controle
-        ($\phi^*_{i\pm1/2}$) como função dos seus valores nos pontos da malha de
-        discretização ($\phi_i$) adotando um \emph{esquema de interpolação.}
+        ($\phi^*_{i\pm1/2}$) como funções dos seus valores nos pontos da malha
+        de discretização ($\phi_i$) adotando um \emph{esquema de interpolação.}
 
         {\centering
             \begin{tikzpicture}[scale=4]
@@ -83,8 +83,8 @@ convecção}
 \begin{column}{.488\linewidth}
     \begin{block}{Esquemas habitualmente usados}
         \begin{itemize}
-            \item Esquema de derivação central (CDS): os valores dos campos nas
-                faces dos VC são expressos como interpolações lineares dos
+            \item Esquema de diferenças centrais (CDS): os valores dos campos
+                nas faces dos VC são expressos como interpolações lineares dos
                 valores nos pontos nodais\\
                 Bons resultados sem escoamento, problemas de estabilidade com
                 escoamentos pronunciados.
@@ -93,7 +93,7 @@ convecção}
                 montante no escoamento\\
                 Estável; soluções razoáveis só em situações de convecção
                 claramente dominante
-            \item Esquema híbrido (HYB): LDS se $|P|\simeq0$, UWS desprezando a
+            \item Esquema híbrido (HYB): CDS se $|P|\simeq0$, UWS desprezando a
                 difusão se $|P|>>1$.\\
                 Estável; soluções razoáveis em diferentes regimes de escoamento;
                 descontinuidade da solução para $P$ coincidente com o valor
@@ -109,7 +109,7 @@ convecção}
 \begin{column}{\linewidth}
 \begin{exampleblock}{Esquema alternativo --- Esquema de ajuste contínuo
     (CAS)}
-    Esquema semelhante ao LDS, mas com coeficientes de interpolação ajustados
+    Esquema semelhante ao CDS, mas com coeficientes de interpolação ajustados
     em função da intensidade da convecção.
     \strut
 
@@ -144,7 +144,7 @@ convecção}
         nos pontos nodais a montante, mas não anula completamente (como no UWS)
         a influência dos pontos a jusante.
 
-        Sem escoamento ($v=0$, $P=0$), este esquema reduz-se ao LDS.
+        Sem escoamento ($v=0$, $P=0$), este esquema reduz-se ao CDS.
     \end{minipage}
 \end{exampleblock}
 
@@ -237,7 +237,7 @@ convecção}
                         \addplot [only marks, mark=+, mark size=8] table [x={x}, y={uws}]{phi.dat};
                         \addplot [only marks, mark=o, mark size=8] table [x={x}, y={hyb}]{phi.dat};
                         \addplot [only marks, mark=square, mark size=8,blue] table [x={x}, y={cas}]{phi.dat};
-                        \legend{{},LDS,UWS,HYB,CAS};
+                        \legend{{},CDS,UWS,HYB,CAS};
                 \end{axis}
             \end{tikzpicture}
         \end{exampleblock}
@@ -266,7 +266,7 @@ convecção}
                         \addplot [only marks, mark=+, mark size=6] table [x={P}, y={uws}]{errtab.dat};
                         \addplot [only marks, mark=o, mark size=6] table [x={P}, y={hyb}]{errtab.dat};
                         \addplot [only marks, mark=square, mark size=8,blue] table [x={P}, y={cas}]{errtab.dat};
-                        \legend{LDS,UWS,HYB,CAS};
+                        \legend{CDS,UWS,HYB,CAS};
                 \end{axis}
             \end{tikzpicture}
         \end{exampleblock}
@@ -295,7 +295,7 @@ convecção}
                         \addplot [only marks, mark=+, mark size=6] table [x={dx}, y={uws}]{conv_rate.dat};
                         \addplot [only marks, mark=o, mark size=6] table [x={dx}, y={hyb}]{conv_rate.dat};
                         \addplot [only marks, mark=square, mark size=8,blue] table [x={dx}, y={cas}]{conv_rate.dat};
-                        \legend{LDS,UWS,HYB,CAS};
+                        \legend{CDS,UWS,HYB,CAS};
                 \end{loglogaxis}
             \end{tikzpicture}
         \end{exampleblock}
@@ -304,18 +304,19 @@ convecção}
 \begin{columns}[t]
     \begin{column}{0.488\linewidth}
         \begin{exampleblock}{Conclusões preliminares}
-            \begin{enumerate}
+            \begin{itemize}
                 \item
                     O esquema proposto produz as soluções mais exactas de todos
                     os esquemas testados, qualquer que seja o regime de
                     escoamento ou o passo de integração
                 \item
                     O esquema proposto apesenta uma taxa de convergência muito
-                    elevada, semelhante ao LDS (de segunda ordem em malhas
+                    elevada, semelhante ao CDS (de segunda ordem em malhas
                     homogéneas)
-            \end{enumerate}
+            \end{itemize}
         \end{exampleblock}
     \end{column}
+    \hfill
     \begin{column}{0.488\linewidth}
         \begin{exampleblock}{Futuros desenvolvimentos}
             \begin{itemize}
@@ -335,9 +336,12 @@ convecção}
         \small
         \begin{block}{Referências}
             \begin{itemize}
-                \item Patankar
-                \item Verteeg \& Malalasekera
-                \item H.~Jing, C.~Li, B.~Zhou, European Conference on Fluid Dynamics
+                \item S.V.~Patankar, \emph{Numerica Heat Transfer and Fluid
+                    Flow,} Taylor \& Frances, 1980
+                    \item H.K.~Versteeg \& W. Malalasekera, \emph{An
+                    Introduction to Computational Fluid Dynamics,} Pearson
+                    Prentice Hall, 1995
+                \item H.~Jing, C.~Li, B.~Zhou, in Proc. European Conference on Fluid Dynamics
                     ECCOMAS CFD 2006
             \end{itemize}
         \end{block}
