@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuges]{babel}
+\usepackage{pgfplots,amsmath}
+\pgfplotsset{compat=1.8}
+\begin{document}
+\newcommand{\len}{10}
+\newcommand{\vtr}[2]{\draw (\len*#1,-0.4) node[below]{#2} -- +(0,0.8);}
+\begin{tikzpicture}
+\fill[gray!20] (0.43*\len,-0.4) rectangle (0.57*\len,0.4);
+\draw (0,0) node[left]{$\phi_0$} -- (0.19*\len,0);
+\draw (0.2*\len,0) -- (0.8*\len,0);
+\draw (0.81*\len,0) -- (\len,0) node [right]{$\phi_L$};
+\vtr{0}{$x=0$};
+\vtr{0.1}{};
+\vtr{0.29}{};
+\vtr{0.43}{$w$};
+\vtr{0.57}{$e$};
+\vtr{0.71}{};
+\vtr{0.9}{};
+\vtr{1}{$x=L$};
+%
+\fill (0.05*\len,0) circle (0.06);
+\fill (0.36*\len,0) circle (0.06) node[below]{$W$};
+\fill (0.5*\len,0) circle (0.06) node[below]{$P$};
+\fill (0.64*\len,0) circle (0.06) node[below]{$E$};
+\fill (0.95*\len,0) circle (0.06);
+%
+\draw (0.19*\len,0)++(45:0.3)--+(225:0.6);
+\draw (0.2*\len,0)++(45:0.3)--+(225:0.6);
+\draw (0.8*\len,0)++(45:0.3)--+(225:0.6);
+\draw (0.81*\len,0)++(45:0.3)--+(225:0.6);
+\end{tikzpicture}
+\end{document}
+
